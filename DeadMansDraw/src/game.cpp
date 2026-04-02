@@ -13,11 +13,16 @@ Game::Game()
 Game::~Game()
 // Cleanup.
 {
-
+	
 }
 
 void Game::initialiseGame()
-// Create deck & initialise players
+// Call initialisation stuff.
 {
+	_currentRound = 0;
+	_currentTurn = 0;
 
+	initialisePlayers();
+	createDeck();
+	shuffleDeck();
 }

@@ -16,11 +16,12 @@ public:
 	void initialiseGame();
 	void initialisePlayers();
 	void createDeck();
-	void shuffleDeck();
+	void shuffleDeck() const;
 	void startGame();
+	bool gameEnd() const;
 	void playTurn();
 	Card* drawCard();
-	void discardCard(Card&);
+	v1oid discardCard(Card&);
 	void switchPlayer();
 
 	~Game();

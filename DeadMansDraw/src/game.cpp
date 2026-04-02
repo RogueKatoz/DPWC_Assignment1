@@ -4,6 +4,8 @@
 
 #include <bits/stdc++.h>
 
+#define MAX_TURNS 20
+
 Game::Game()
 // Create inital states for the game.
 {
@@ -26,13 +28,14 @@ void Game::initialiseGame()
 }
 
 void Game::initialisePlayers()
-// Create player objects
+// Create both players.
 {
 	_players[0] = new Player();
 	_players[1] = new Player();
 }
 
 void Game::createDeck()
+// Add 6 cards of each suit to the deck collection.
 {
 	CardType typeList[] = { Cannon, Chest, Key, Anchor, Sword, Hook, Oracle, Map, Mermaid, Kraken };
 
@@ -55,13 +58,29 @@ void Game::createDeck()
 	}
 }
 
-void Game::shuffleDeck()
+void Game::shuffleDeck() const
 {
 	random_shuffle(_deck.begin(), _deck.end());
 }
 
 void Game::startGame()
+// Initialise and then
 {
+	initialiseGame();
+	while (gameEnd == 0)
+	{
+
+
+	}
+}
+
+bool Game::gameEnd() const
+{
+	if (_currentTurn > MAX_TURNS || _deck.empty())
+	{
+		return true;
+	}
+	else return false;
 }
 
 void Game::playTurn()

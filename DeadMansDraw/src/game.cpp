@@ -21,6 +21,7 @@ void Game::initialiseGame()
 {
 	_currentRound = 0;
 	_currentTurn = 0;
+	_currentPlayer = 0;
 
 	initialisePlayers();
 	createDeck();
@@ -64,13 +65,13 @@ void Game::shuffleDeck() const
 }
 
 void Game::startGame()
-// Initialise and then
+// Initialise and then play through turns, ending if condition is met.
 {
 	initialiseGame();
 	while (gameEnd == 0)
 	{
-
-
+		playTurn();
+		switchPlayer();
 	}
 }
 

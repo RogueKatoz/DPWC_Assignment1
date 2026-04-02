@@ -9,6 +9,7 @@ private:
 	CardCollection _discardPile;
 	int _currentRound;
 	int _currentTurn;
+	int _currentPlayer;
 
 public:
 	Game();
@@ -21,7 +22,7 @@ public:
 	bool gameEnd() const;
 	void playTurn();
 	Card* drawCard();
-	v1oid discardCard(Card&);
+	void discardCard(Card&);
 	void switchPlayer();
 
 	~Game();

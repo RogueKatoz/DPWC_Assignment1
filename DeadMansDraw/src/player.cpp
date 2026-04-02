@@ -4,6 +4,13 @@
 
 Player::Player()
 {
+	std::string names[] = { "Sam", "Billy", "Jen", "Bob", "Sally", "Joe", "Sue",
+	"Sasha", "Tina", "Marge" };
+	_name = names[rand() % 10];
+
+	_score = 0;
+	_playArea = new CardCollection;
+	_bank = new CardCollection;
 }
 
 int Player::getScore()

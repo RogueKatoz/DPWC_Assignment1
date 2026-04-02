@@ -6,7 +6,7 @@ class Player;
 class Player {
 private:
 	std::string _name;
-	int _score = 0;
+	int _score;
 	CardCollection _playArea;
 	CardCollection _bank;
 

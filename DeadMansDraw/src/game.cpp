@@ -6,8 +6,8 @@ Game::Game()
 // Create inital states for the game.
 {
 	_players = { nullptr, nullptr };
-	_deck = nullptr;
-	_discardPile = nullptr;
+	_deck = new CardCollection;
+	_discardPile = new CardCollection;
 	_currentRound = 0;
 	_currentTurn = 0;
 }
@@ -55,6 +55,7 @@ void Game::createDeck()
 
 void Game::shuffleDeck()
 {
+
 }
 
 void Game::startGame()

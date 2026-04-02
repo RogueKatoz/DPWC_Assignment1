@@ -15,14 +15,13 @@ public:
 	~Game();
 
 	void initialiseGame();
-	void startGame();
-	void endGame();
+	void initialisePlayers();
 	void createDeck();
 	void shuffleDeck();
-	void initialisePlayers();
+	void startGame();
 	void playTurn();
 	Card* drawCard();
 	void discardCard(Card&);
-	bool askToDraw(Player*);
 	void switchPlayer();
+	void endGame();
 };

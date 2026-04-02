@@ -13,7 +13,6 @@ private:
 public:
 
 	Player();
-	~Player();
 
 	int getScore();
 	int getName();
@@ -24,4 +23,6 @@ public:
 	void discardPlayedCards(Game& game);
 	void printPlayedCards();
 	void printBank();
+
+	~Player();
 };

@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Card.h"
+#include "Player.h"
 
 Game::Game()
 // Create inital states for the game.
@@ -25,4 +27,42 @@ void Game::initialiseGame()
 	initialisePlayers();
 	createDeck();
 	shuffleDeck();
+}
+
+void Game::initialisePlayers()
+{
+
+}
+
+void Game::createDeck()
+{
+}
+
+void Game::shuffleDeck()
+{
+}
+
+void Game::startGame()
+{
+}
+
+void Game::playTurn()
+{
+}
+
+Card* Game::drawCard()
+{
+	return nullptr;
+}
+
+void Game::discardCard(Card&)
+{
+}
+
+void Game::switchPlayer()
+{
+}
+
+void Game::endGame()
+{
 }

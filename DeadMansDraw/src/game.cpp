@@ -5,17 +5,11 @@
 Game::Game()
 // Create inital states for the game.
 {
-	_players = nullptr;
+	_players = { nullptr, nullptr };
 	_deck = nullptr;
 	_discardPile = nullptr;
 	_currentRound = 0;
 	_currentTurn = 0;
-}
-
-Game::~Game()
-// Cleanup.
-{
-	
 }
 
 void Game::initialiseGame()
@@ -30,8 +24,10 @@ void Game::initialiseGame()
 }
 
 void Game::initialisePlayers()
+// Create player objects
 {
-
+	_players[0] = new Player();
+	_players[1] = new Player();
 }
 
 void Game::createDeck()
@@ -63,6 +59,9 @@ void Game::switchPlayer()
 {
 }
 
-void Game::endGame()
+Game::~Game()
+// Cleanup.
 {
+	delete _players[0];
+	delete _players[1];
 }

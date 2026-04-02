@@ -4,7 +4,7 @@ class Game;
 
 class Game {
 private:
-	Player[2] _players;
+	Player* _players[2];
 	CardCollection _deck;
 	CardCollection _discardPile;
 	int _currentRound;
@@ -12,7 +12,6 @@ private:
 
 public:
 	Game();
-	~Game();
 
 	void initialiseGame();
 	void initialisePlayers();
@@ -23,5 +22,6 @@ public:
 	Card* drawCard();
 	void discardCard(Card&);
 	void switchPlayer();
-	void endGame();
+
+	~Game();
 };

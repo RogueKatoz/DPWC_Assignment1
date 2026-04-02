@@ -1,8 +1,5 @@
 #pragma once
 
-#include "Game.h"
-#include "Player.h"
-
 #include <vector>
 
 class Card;
@@ -16,7 +13,6 @@ protected:
 	int _value;
 
 public:
-
 	Card(CardType type, int value);
 	virtual ~Card();
 

@@ -2,10 +2,27 @@
 
 class Game;
 
-
-
 class Game {
-	Player[2] players;
+private:
+	Player[2] _players;
+	CardCollection _deck;
+	CardCollection _discardPile;
+	int _currentRound;
+	int _currentTurn;
 
+public:
+	Game();
+	~Game();
 
+	void initialiseGame();
+	void startGame();
+	void endGame();
+	void createDeck();
+	void shuffleDeck();
+	void initialisePlayers();
+	void playTurn();
+	Card* drawCard();
+	void discardCard(Card&);
+	bool askToDraw(Player*);
+	void switchPlayer();
 };

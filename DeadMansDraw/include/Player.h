@@ -1,5 +1,24 @@
 #pragma once
+
+class Player;
+
 class Player {
-	std::string name;
+private:
+	std::string _name;
+	int _score;
+	CardCollection _playArea;
+	CardCollection _bank;
+
+public:
+
+	int getScore();
+	int getName();
+
+	void playCard(Card* card, Game& game);
+	bool isBust();
+	void bankPlayedCards();
+	void discardPlayedCards(Game& game);
+	void printPlayedCards();
+	void printBank();
 
 };

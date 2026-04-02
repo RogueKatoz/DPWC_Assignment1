@@ -13,14 +13,14 @@ Player::Player()
 	_bank = new CardCollection;
 }
 
-int Player::getScore()
+int Player::calculateScore()
 {
-	return 0;
+
 }
 
-int Player::getName()
+std::string Player::getName() const
 {
-	return 0;
+	return _name;
 }
 
 void Player::playCard(Card* card, Game& game)

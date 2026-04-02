@@ -2,6 +2,8 @@
 #include "Card.h"
 #include "Player.h"
 
+#include <bits/stdc++.h>
+
 Game::Game()
 // Create inital states for the game.
 {
@@ -38,14 +40,14 @@ void Game::createDeck()
 	{
 		if (type == Mermaid)
 		{
-			for (int val = 4, val <= 9, val++)
+			for (int val = 4; val <= 9; val++)
 			{
 				_deck.push_back(new Card(type, val))
 			}
 		}
 		else
 		{
-			for (int val = 2, val <= 7, val++)
+			for (int val = 2; val <= 7; val++)
 			{
 				_deck.push_back(new Card(type, val))
 			}
@@ -55,7 +57,7 @@ void Game::createDeck()
 
 void Game::shuffleDeck()
 {
-
+	random_shuffle(_deck.begin(), _deck.end());
 }
 
 void Game::startGame()

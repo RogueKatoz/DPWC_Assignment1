@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 
 class Player;
@@ -14,8 +15,8 @@ public:
 
 	Player();
 
-	int getScore();
-	int getName();
+	int calculateScore();
+	std::string getName() const;
 
 	void playCard(Card* card, Game& game);
 	bool isBust();

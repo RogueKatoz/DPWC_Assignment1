@@ -6,7 +6,7 @@
 #include <vector>
 
 class Card;
-typdef std::vector<Card*> CardCollection;
+typedef std::vector<Card*> CardCollection;
 
 enum CardType {Cannon, Chest, Key, Anchor, Sword, Hook, Oracle, Map, Mermaid, Kraken};
 
@@ -16,7 +16,6 @@ protected:
 	int _value;
 
 public:
-
 	Card(CardType type, int value);
 	virtual ~Card();
 

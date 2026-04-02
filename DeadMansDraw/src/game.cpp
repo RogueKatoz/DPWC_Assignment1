@@ -3,6 +3,7 @@
 #include "Player.h"
 
 #include <bits/stdc++.h>
+#include <iostream>
 
 #define MAX_TURNS 20
 
@@ -97,6 +98,7 @@ void Game::playTurn()
 		if (promptDrawCard() == 0)
 		{
 			_players[_currentPlayer]->bankPlayedCards();
+			break;
 		}
 	}
 	
@@ -104,8 +106,17 @@ void Game::playTurn()
 }
 
 bool Game::promptDrawCard()
+// It will be assumed that if any character other than 'y' is entered, turn ends.
 {
-	return false;
+	char input;
+	std::cout << "Draw again? (y/n): ");
+	std::cin.get(input);
+	std::endl;
+	if (input == 'y')
+	{
+		return 1;
+	}
+	else return 0;
 }
 
 Card* Game::drawCard()

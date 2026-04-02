@@ -1,15 +1,19 @@
 #pragma once
 
+
 class Player;
 
 class Player {
 private:
 	std::string _name;
-	int _score;
+	int _score = 0;
 	CardCollection _playArea;
 	CardCollection _bank;
 
 public:
+
+	Player();
+	~Player();
 
 	int getScore();
 	int getName();
@@ -20,5 +24,4 @@ public:
 	void discardPlayedCards(Game& game);
 	void printPlayedCards();
 	void printBank();
-
 };

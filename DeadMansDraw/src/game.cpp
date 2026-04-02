@@ -22,6 +22,7 @@ void Game::initialiseGame()
 	_currentRound = 0;
 	_currentTurn = 0;
 	_currentPlayer = 0;
+	_otherPlayer = 1;
 
 	initialisePlayers();
 	createDeck();
@@ -86,6 +87,25 @@ bool Game::gameEnd() const
 
 void Game::playTurn()
 {
+	while (1)
+	{
+		// Draw and play card.
+		_players[_currentPlayer]->playCard(drawCard(), this);
+
+		// Check if player is bust and break, or ask for another card.
+		if (_players[_currentPlayer]->isBust() == 1) break;
+		if (promptDrawCard() == 0)
+		{
+			_players[_currentPlayer]->bankPlayedCards();
+		}
+	}
+	
+	switchPlayer();
+}
+
+bool Game::promptDrawCard()
+{
+	return false;
 }
 
 Card* Game::drawCard()

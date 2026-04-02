@@ -10,6 +10,7 @@ private:
 	int _currentRound;
 	int _currentTurn;
 	int _currentPlayer;
+	int _otherPlayer;
 
 public:
 	Game();
@@ -21,7 +22,9 @@ public:
 	void startGame();
 	bool gameEnd() const;
 	void playTurn();
+	bool promptDrawCard();
 	Card* drawCard();
+	void
 	void discardCard(Card&);
 	void switchPlayer();
 

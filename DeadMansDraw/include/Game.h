@@ -20,12 +20,12 @@ public:
 	void createDeck();
 	void shuffleDeck() const;
 	void startGame();
-	bool gameEnd() const;
+	bool endGame() const;
 	void playTurn();
 	bool promptDrawCard();
 	Card* drawCard();
 	void
-	void discardCard(Card&);
+	void discardCard(Card& card);
 	void switchPlayer();
 
 	~Game();

@@ -20,8 +20,7 @@ public:
 	void createDeck();
 	void shuffleDeck() const;
 	void startGame();
-
-	bool gameEnd() const;
+	bool endGame() const;
 	void playTurn();
 	bool promptDrawCard();
 	Card* drawCard();

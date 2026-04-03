@@ -70,14 +70,14 @@ void Game::startGame()
 // Initialise and then play through turns, ending if condition is met.
 {
 	initialiseGame();
-	while (gameEnd == 0)
+	while (endGame() == 0)
 	{
 		playTurn();
 		switchPlayer();
 	}
 }
 
-bool Game::gameEnd() const
+bool Game::endGame() const
 // End game if max turns are reached or deck is empty.
 {
 	if (_currentTurn > MAX_TURNS || _deck.empty())
@@ -92,8 +92,10 @@ void Game::playTurn()
 {
 	while (1)
 	{
-		// Draw and play card.
-		_players[_currentPlayer]->playCard(drawCard(), this);
+		// Draw and play card if deck is not empty.
+		Card* cardToPlay = drawCard();
+		if (cardToPlay == NULL) break;
+		_players[_currentPlayer]->playCard(cardToPlay, this);
 
 		// Check if player is bust and break, or ask for another card.
 		if (_players[_currentPlayer]->isBust() == 1) break;
@@ -102,10 +104,7 @@ void Game::playTurn()
 			_players[_currentPlayer]->bankPlayedCards();
 			break;
 		}
-
-		if (gameEnd() == 1) break;
 	}
-	switchPlayer();
 }
 
 bool Game::promptDrawCard()
@@ -124,7 +123,7 @@ bool Game::promptDrawCard()
 
 Card* Game::drawCard()
 {
-	return nullptr;
+	return _deck.pop();
 }
 
 void Game::discardCard(Card&)

@@ -119,6 +119,8 @@ void Game::discardCard(Card&)
 
 void Game::switchPlayer()
 {
+	_currentPlayer = _currentPlayer + 1 % 2;
+	_otherPlayer = _otherPlayer + 1 % 2;
 }
 
 Game::~Game()

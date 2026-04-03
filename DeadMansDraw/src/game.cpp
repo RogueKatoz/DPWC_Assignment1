@@ -15,16 +15,13 @@ Game::Game()
 	_discardPile = new CardCollection;
 	_currentRound = 0;
 	_currentTurn = 0;
+	_currentPlayer = 0;
+	_otherPlayer = 1;
 }
 
 void Game::initialiseGame()
 // Call initialisation stuff.
 {
-	_currentRound = 0;
-	_currentTurn = 0;
-	_currentPlayer = 0;
-	_otherPlayer = 1;
-
 	initialisePlayers();
 	createDeck();
 	shuffleDeck();
@@ -126,8 +123,9 @@ Card* Game::drawCard()
 	return _deck.pop();
 }
 
-void Game::discardCard(Card&)
+void Game::discardCard(Card& card)
 {
+	_discardPile.push_back(card);
 }
 
 void Game::switchPlayer()

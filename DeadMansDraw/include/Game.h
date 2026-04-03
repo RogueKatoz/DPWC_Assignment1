@@ -25,7 +25,7 @@ public:
 	bool promptDrawCard();
 	Card* drawCard();
 	void
-	void discardCard(Card&);
+	void discardCard(Card& card);
 	void switchPlayer();
 
 	~Game();

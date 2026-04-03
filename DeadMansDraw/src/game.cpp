@@ -78,6 +78,7 @@ void Game::startGame()
 }
 
 bool Game::gameEnd() const
+// End game if max turns are reached or deck is empty.
 {
 	if (_currentTurn > MAX_TURNS || _deck.empty())
 	{
@@ -87,6 +88,7 @@ bool Game::gameEnd() const
 }
 
 void Game::playTurn()
+// Go through single turn for current player.
 {
 	while (1)
 	{
@@ -100,8 +102,9 @@ void Game::playTurn()
 			_players[_currentPlayer]->bankPlayedCards();
 			break;
 		}
+
+		if (gameEnd() == 1) break;
 	}
-	
 	switchPlayer();
 }
 

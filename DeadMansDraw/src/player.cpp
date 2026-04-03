@@ -25,6 +25,10 @@ std::string Player::getName() const
 
 void Player::playCard(Card* card, Game& game)
 {
+	if (isBust() == 1) discardPlayedCards(game);
+
+	card->play(game, this);
+
 }
 
 bool Player::isBust()

@@ -2,6 +2,8 @@
 #include "Card.h"
 #include "Game.h"
 
+#include <algorithm>
+
 Player::Player()
 {
 	std::string names[] = { "Sam", "Billy", "Jen", "Bob", "Sally", "Joe", "Sue",
@@ -68,11 +70,46 @@ void Player::discardPlayedCards(Game& game)
 
 void Player::printPlayedCards()
 {
+
 }
 
 void Player::printBank()
 {
 }
+
+void printCollection(const CardCollection cards)
+// Go through each type of card present in play area/bank and print in descending order.
+{
+	CardType printOrder[] = {Cannon, Chest, Key, Anchor, Sword, Hook, Oracle, Map, Mermaid, Kraken};
+	for (CardType typetoPrint : printOrder)
+	{
+		// Get all cards of this type.
+		CardCollection* cardsToPrint;
+		for (Card* card : cards)
+		{
+			if (card->type() == typetoPrint)
+			{
+				cardsToPrint->push_back(card);
+			}
+		}
+		if (cardsToPrint->size() == 0) continue;
+
+		// Print all cards of this type in descending order of value.
+		while (cardsToPrint->size() != 0)
+		{
+			Card* highestCard;
+			for (Card* card : *cardsToPrint)
+			{
+				if (card->value() > highestCard->value())
+				{
+					highestCard = card;
+				}
+			}
+			std::cout << highestCard->str() << " ";
+		}
+		std::cout << std::endl;
+	}
+}	
 
 Player::~Player()
 {

@@ -23,6 +23,7 @@ public:
 	void discardPlayedCards(Game& game);
 	void printPlayedCards();
 	void printBank();
+	void printCollection(const CardCollection cards);
 
 	~Player();
 };

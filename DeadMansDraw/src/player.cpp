@@ -24,7 +24,9 @@ std::string Player::getName() const
 }
 
 void Player::playCard(Card* card, Game& game)
+// Add card to play area, then play effect if not bust.
 {
+	_playArea->push_back(card);
 	if (isBust() == 1) discardPlayedCards(game);
 
 	card->play(game, *this);
@@ -32,7 +34,18 @@ void Player::playCard(Card* card, Game& game)
 }
 
 bool Player::isBust()
+// Go through play area cards and return true if two of the same suit exist.
 {
+	for (Card* cardA : *_playArea)
+	{
+		for (Card* cardB : *_playArea)
+		{
+			if (cardA != cardB && cardA->type() == cardB->type())
+			{
+				return true;
+			}
+		}
+	}
 	return false;
 }
 

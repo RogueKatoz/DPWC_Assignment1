@@ -56,12 +56,16 @@ bool Player::isBust()
 
 void Player::bankPlayedCards()
 {
-
+	while (_playArea->size() > 0)
+	{
+		_bank->push_back(_playArea->back());
+		_playArea->pop_back();
+	}
 }
 
 void Player::discardPlayedCards(Game& game)
 {
-	while (_playArea->empty() == 0)
+	while (_playArea->size() > 0)
 	{
 		game.discardCard(*(_playArea->back()));
 		_playArea->pop_back();

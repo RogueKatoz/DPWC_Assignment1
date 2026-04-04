@@ -70,11 +70,15 @@ void Player::discardPlayedCards(Game& game)
 
 void Player::printPlayedCards()
 {
-
+	std::cout << _name << "'s Play Area:" << std::endl;
+	printCollection(*_playArea);
+	std::cout << std::endl;
 }
 
 void Player::printBank()
 {
+	std::cout << _name << "'s Bank:" << std::endl;
+	std::cout << "| Score: " << calculateScore() << std::endl;
 }
 
 void printCollection(const CardCollection cards)
@@ -105,7 +109,7 @@ void printCollection(const CardCollection cards)
 					highestCard = card;
 				}
 			}
-			std::cout << highestCard->str() << " ";
+			std::cout << " " << highestCard->str();
 		}
 		std::cout << std::endl;
 	}

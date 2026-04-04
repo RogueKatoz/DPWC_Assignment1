@@ -27,10 +27,13 @@ void Player::playCard(Card* card, Game& game)
 // Add card to play area, then play effect if not bust.
 {
 	_playArea->push_back(card);
+	if (isBust() == 1)
+	{
+		discardPlayedCards(game);
+	} else card->play(game, *this);
+
+	// Check if bust again after card has been played.
 	if (isBust() == 1) discardPlayedCards(game);
-
-	card->play(game, *this);
-
 }
 
 bool Player::isBust()

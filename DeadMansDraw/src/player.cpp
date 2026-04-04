@@ -27,7 +27,7 @@ void Player::playCard(Card* card, Game& game)
 {
 	if (isBust() == 1) discardPlayedCards(game);
 
-	card->play(game, this);
+	card->play(game, *this);
 
 }
 

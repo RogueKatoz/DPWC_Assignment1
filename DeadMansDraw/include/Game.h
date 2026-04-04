@@ -5,8 +5,8 @@ class Game;
 class Game {
 private:
 	Player* _players[2];
-	CardCollection _deck;
-	CardCollection _discardPile;
+	CardCollection* _deck;
+	CardCollection* _discardPile;
 	int _currentRound;
 	int _currentTurn;
 	int _currentPlayer;
@@ -24,7 +24,6 @@ public:
 	void playTurn();
 	bool promptDrawCard();
 	Card* drawCard();
-	void
 	void discardCard(Card& card);
 	void switchPlayer();
 

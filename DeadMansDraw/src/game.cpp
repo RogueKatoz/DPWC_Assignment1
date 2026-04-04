@@ -4,13 +4,15 @@
 
 #include <bits/stdc++.h>
 #include <iostream>
+#include <vector>
 
 #define MAX_TURNS 20
 
 Game::Game()
 // Create inital states for the game.
 {
-	_players = { nullptr, nullptr };
+	_players[0] = nullptr;
+	_players[1] = nullptr;
 	_deck = new CardCollection;
 	_discardPile = new CardCollection;
 	_currentRound = 0;
@@ -45,14 +47,14 @@ void Game::createDeck()
 		{
 			for (int val = 4; val <= 9; val++)
 			{
-				_deck.push_back(new Card(type, val))
+				_deck->push_back(new Card(type, val));
 			}
 		}
 		else
 		{
 			for (int val = 2; val <= 7; val++)
 			{
-				_deck.push_back(new Card(type, val))
+				_deck->push_back(new Card(type, val));
 			}
 		}
 	}
@@ -60,7 +62,8 @@ void Game::createDeck()
 
 void Game::shuffleDeck() const
 {
-	random_shuffle(_deck.begin(), _deck.end());
+	srand(unsigned(time(NULL)));
+	std::random_shuffle(_deck->begin(), _deck->end());
 }
 
 void Game::startGame()
@@ -77,7 +80,7 @@ void Game::startGame()
 bool Game::endGame() const
 // End game if max turns are reached or deck is empty.
 {
-	if (_currentTurn > MAX_TURNS || _deck.empty())
+	if (_currentTurn > MAX_TURNS || _deck->empty())
 	{
 		return true;
 	}
@@ -108,9 +111,8 @@ bool Game::promptDrawCard()
 // It will be assumed that if any character other than 'y' is entered, turn ends.
 {
 	char input;
-	std::cout << "Draw again? (y/n): ");
+	std::cout << "Draw again? (y/n): ";
 	std::cin.get(input);
-	std::endl;
 	if (input == 'y')
 	{
 		return 1;
@@ -120,12 +122,12 @@ bool Game::promptDrawCard()
 
 Card* Game::drawCard()
 {
-	return _deck.pop();
+	return _deck->pop();
 }
 
 void Game::discardCard(Card& card)
 {
-	_discardPile.push_back(card);
+	_discardPile->push_back(&card);
 }
 
 void Game::switchPlayer()

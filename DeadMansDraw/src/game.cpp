@@ -39,9 +39,7 @@ void Game::initialisePlayers()
 void Game::createDeck()
 // Add 6 cards of each suit to the deck collection.
 {
-	CardType typeList[] = { Cannon, Chest, Key, Anchor, Sword, Hook, Oracle, Map, Mermaid, Kraken };
-
-	for (CardType type : typeList)
+	for (CardType type : CARD_TYPES)
 	{
 		if (type == Mermaid)
 		{

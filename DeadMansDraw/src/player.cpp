@@ -17,6 +17,8 @@ Player::Player()
 
 int Player::calculateScore()
 {
+	if (_bank->size() == 0) return 0;
+
 
 }
 
@@ -88,8 +90,7 @@ void Player::printBank()
 void printCollection(const CardCollection cards)
 // Go through each type of card present in play area/bank and print in descending order.
 {
-	CardType printOrder[] = {Cannon, Chest, Key, Anchor, Sword, Hook, Oracle, Map, Mermaid, Kraken};
-	for (CardType typetoPrint : printOrder)
+	for (CardType typetoPrint : CARD_TYPES)
 	{
 		// Get all cards of this type.
 		CardCollection* cardsToPrint;

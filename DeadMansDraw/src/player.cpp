@@ -17,9 +17,23 @@ Player::Player()
 
 int Player::calculateScore()
 {
-	if (_bank->size() == 0) return 0;
-
-
+	int score = 0;
+	if (_bank->size() != 0)
+	{
+		for (CardType type : CARD_TYPES)
+		{
+			int highestValue;
+			for (Card* card : *_bank)
+			{
+				if (card->type() == type && card->value() > highestValue)
+				{
+					highestValue = card->value();
+				}
+			}
+			score += highestValue;
+		}
+	}
+	return score;
 }
 
 std::string Player::getName() const

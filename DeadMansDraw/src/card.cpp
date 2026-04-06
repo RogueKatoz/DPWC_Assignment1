@@ -2,6 +2,8 @@
 
 Card::Card(CardType type, int value)
 {
+	_type = type;
+	_value = value;
 }
 
 Card::~Card()
@@ -10,10 +12,10 @@ Card::~Card()
 
 const CardType& Card::type() const
 {
-	// TODO: insert return statement here
+	return _type;
 }
 
 int Card::value()
 {
-	return 0;
+	return _value;
 }

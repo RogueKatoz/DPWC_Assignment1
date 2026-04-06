@@ -18,7 +18,6 @@ Game::Game()
 	_currentRound = 0;
 	_currentTurn = 0;
 	_currentPlayer = 0;
-	_otherPlayer = 1;
 }
 
 void Game::initialiseGame()
@@ -127,6 +126,17 @@ void Game::discardCard(Card& card)
 {
 	_discardPile->push_back(&card);
 }
+
+Player* Game::currentPlayer() const
+{
+	return _players[_currentPlayer];
+}
+
+Player* Game::otherPlayer() const
+{
+	return _players[1 - _currentPlayer];
+}
+
 
 void Game::switchPlayer()
 {

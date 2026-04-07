@@ -23,7 +23,7 @@ int Player::calculateScore()
 	{
 		for (CardType type : CARD_TYPES)
 		{
-			int highestValue;
+			int highestValue = 0;
 			for (Card* card : *_bank)
 			{
 				if (card->type() == type && card->value() > highestValue)
@@ -133,7 +133,7 @@ void Player::printCollection(const CardCollection& cards) const
 	for (CardType typetoPrint : CARD_TYPES)
 	{
 		// Get all cards of this type.
-		CardCollection* cardsToPrint;
+		CardCollection cardsToPrint;
 		for (Card* card : cards)
 		{
 			if (card->type() == typetoPrint)
@@ -145,7 +145,7 @@ void Player::printCollection(const CardCollection& cards) const
 
 		// Print all cards of this type in descending order of value.
 		std::cout << "\t";
-		while (cardsToPrint->size() != 0)
+		while (cardsToPrint->size() > 0)
 		{
 			Card* highestCard; int highestValue = 0;
 			for (Card* card : *cardsToPrint)
@@ -157,6 +157,7 @@ void Player::printCollection(const CardCollection& cards) const
 				}
 			}
 			std::cout << highestCard->str() << " ";
+			cardsToPrint.erase(std::remove(cardsToPrint.begin(), cardsToPrint.end(), highestCard), cardsToPrint.end());
 		}
 		std::cout << std::endl;
 	}
@@ -177,7 +178,7 @@ Card* Player::stealBankCard()
 // List highest card of each type in bank, ask which to take, and return it, deleting it from the bank.
 {
 	// Check from highest value first.
-	CardCollection* cardsToSteal;
+	CardCollection cardsToSteal;
 	for (int i = 9; i > 0; i--)
 	{
 		for (Card* cardA : *_bank)
@@ -221,7 +222,7 @@ Card* Player::stealBankCard()
 	}
 
 	// Remove card from bank and return it.
-	Card* cardToSteal = (*cardsToSteal)[cardIndex];
+	Card* cardToSteal = (*cardsToSteal)[cardIndex-1];
 	_bank->erase(std::remove(_bank->begin(), _bank->end(), cardToSteal), _bank->end());
 	return cardToSteal;
 }

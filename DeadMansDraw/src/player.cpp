@@ -169,15 +169,22 @@ Card* Player::stealBankCard()
 	}
 
 	// Print cards to steal.
+	
 	for (int i = 0; i < cardsToSteal->size(); i++)
 	{
-		std::cout << "(" << i << ") " << (*cardsToSteal)[i]->str() << std::endl;
+		std::cout << "\t(" << i+1 << ") " << (*cardsToSteal)[i]->str() << std::endl;
 	}
 
 	// Ask user which card to steal.
-	std::cout << "Which card do you pick? ";
-	int cardIndex;
-	std::cin >> cardIndex;
+	int maxChoice = cardsToSteal->size();
+	int cardIndex = 0;
+
+	while (cardIndex > 0 && cardIndex <= maxChoice)
+	{
+		std::cout << "\tWhich card do you pick? ";
+		std::cin >> cardIndex;
+		std::cout << std::endl;
+	}
 
 	// Remove card from bank and return it.
 	Card* cardToSteal = (*cardsToSteal)[cardIndex];

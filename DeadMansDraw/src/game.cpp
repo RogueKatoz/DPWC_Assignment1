@@ -81,8 +81,6 @@ Card* Game::createCard(CardType type, int value)
 			return new ChestCard(value);
 		case Key:
 			return new KeyCard(value);
-		case Anchor:
-			return new AnchorCard(value);
 		case Sword:
 			return new SwordCard(value);
 		case Hook:

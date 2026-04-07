@@ -168,11 +168,11 @@ void Player::printCollection(const CardCollection& cards) const
 bool Player::bankHasCards() const
 // Simply check whether or not the bank is empty.
 {
-	if (_bank->size() == 0)
+	if (_bank.size() == 0)
 	{
 		return false;
 	}
-	else return true;
+	return true;
 }
 
 

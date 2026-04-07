@@ -171,7 +171,9 @@ Card* Game::drawCardDeck()
 	{
 		return NULL;
 	}
-	return _deck->pop_back();
+	Card* drawnCard = _deck->back();
+	_deck->pop_back();
+	return drawnCard;
 }
 
 Card* Game::drawCardDiscard()
@@ -180,7 +182,9 @@ Card* Game::drawCardDiscard()
 	{
 		return NULL;
 	}
-	return _discardPile->pop_back();
+	Card* drawnCard = _discardPile->back();
+	_discardPile->pop_back();
+	return drawnCard;
 }	
 
 Card* Game::peekDeck()

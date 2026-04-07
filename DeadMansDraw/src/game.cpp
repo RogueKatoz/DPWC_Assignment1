@@ -14,9 +14,9 @@
 #include "cards/MermaidCard.h"
 #include "cards/KrakenCard.h"
 
-#include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
+#include <random>
 
 #define MAX_TURNS 20
 
@@ -37,7 +37,7 @@ void Game::initialiseGame()
 {
 	initialisePlayers();
 	createDeck();
-	shuffleDeck();
+	shuffleDeck(_deck);
 
 std::cout << GAME_TITLE_H << std::endl;
 std::cout << "Starting Dead Man's Draw++!" << std::endl;
@@ -99,10 +99,10 @@ Card* Game::createCard(CardType type, int value)
 	}
 }
 
-void Game::shuffleDeck() const
-{
-	srand(unsigned(time(NULL)));
-	std::random_shuffle(_deck->begin(), _deck->end());
+void Game::shuffleDeck(CardCollection& cards) {
+	CardCollection shuffleDeck{ cards.begin(), cards.end() };
+	std::shuffle(shuffleDeck.begin(), shuffleDeck.end(), std::mt19937{ std::random_device{}() });
+	std::copy(shuffleDeck.begin(), shuffleDeck.end(), cards.begin());
 }
 
 void Game::startGame()

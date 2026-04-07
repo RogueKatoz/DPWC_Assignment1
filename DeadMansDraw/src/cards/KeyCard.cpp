@@ -1,10 +1,7 @@
 #include "KeyCard.h"
 #include <string>
 
-KeyCard::KeyCard(int value)
-{
-	Card(Key, value);
-}
+KeyCard::KeyCard(int value) : Card(Key, value) {}
 
 std::string KeyCard::str() const
 {

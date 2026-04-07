@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-KrakenCard::KrakenCard(int value)
-{
-	Card(Kraken, value);
-}
+KrakenCard::KrakenCard(int value) : Card(Kraken, value) {}
 
 std::string KrakenCard::str() const
 {

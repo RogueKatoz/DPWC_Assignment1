@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-MermaidCard::MermaidCard(int value)
-{
-	Card(Mermaid, value);
-}
+MermaidCard::MermaidCard(int value) : Card(Mermaid, value) {}
 
 std::string MermaidCard::str() const
 {

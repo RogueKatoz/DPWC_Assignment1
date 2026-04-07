@@ -1,10 +1,7 @@
 #include "AnchorCard.h"
 #include <string>
 
-AnchorCard::AnchorCard(int value)
-{
-	Card(Anchor, value);
-}
+AnchorCard::AnchorCard(int value) : Card(Anchor, value) {}
 
 std::string AnchorCard::str() const
 {

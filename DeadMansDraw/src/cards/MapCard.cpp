@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-MapCard::MapCard(int value)
-{
-	Card(Map, value);
-}
+MapCard::MapCard(int value) : Card(Map, value) {}
 
 std::string MapCard::str() const
 {

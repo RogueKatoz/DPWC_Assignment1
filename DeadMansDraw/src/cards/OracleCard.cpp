@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-OracleCard::OracleCard(int value)
-{
-	Card(Oracle, value);
-}
+OracleCard::OracleCard(int value) : Card(Oracle, value) {}
 
 std::string OracleCard::str() const
 {

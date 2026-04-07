@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-SwordCard::SwordCard(int value)
-{
-	Card(Sword, value);
-}
+SwordCard::SwordCard(int value) : Card(Sword, value) {}
 
 std::string SwordCard::str() const
 {

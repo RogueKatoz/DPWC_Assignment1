@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-CannonCard::CannonCard(int value)
-{
-	Card(Cannon, value);
-}
+CannonCard::CannonCard(int value) : Card(Cannon, value) {}
 
 std::string CannonCard::str() const
 {

@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "Card.h"
-#include "Player.h"
 #include "game_title.h"
 
 #include <bits/stdc++.h>
@@ -48,16 +46,43 @@ void Game::createDeck()
 		{
 			for (int val = 4; val <= 9; val++)
 			{
-				_deck->push_back(new Card(type, val));
+				_deck->push_back(createCard(type, val));
 			}
 		}
 		else
 		{
 			for (int val = 2; val <= 7; val++)
 			{
-				_deck->push_back(new Card(type, val));
+				_deck->push_back(createCard(type, val));
 			}
 		}
+	}
+}
+
+Card* Game::createCard(CardType type, int value)
+{
+	switch (type)
+	{
+		case Cannon:
+			return new CannonCard(value);
+		case Chest:
+			return new ChestCard(value);
+		case Key:
+			return new KeyCard(value);
+		case Anchor:
+			return new AnchorCard(value);
+		case Sword:
+			return new SwordCard(value);
+		case Hook:
+			return new HookCard(value);
+		case Oracle:
+			return new OracleCard(value);
+		case Map:
+			return new MapCard(value);
+		case Mermaid:
+			return new MermaidCard(value);
+		case Kraken:
+			return new KrakenCard(value);
 	}
 }
 

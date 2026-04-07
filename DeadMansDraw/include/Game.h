@@ -19,6 +19,7 @@ public:
 	void initialiseGame();
 	void initialisePlayers();
 	void createDeck();
+	Card* createCard(CardType type, int value);
 	void shuffleDeck() const;
 	void startGame();
 	bool endGame() const;

@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-HookCard::HookCard(int value)
-{
-	Card(Hook, value);
-}
+HookCard::HookCard(int value) : Card(Hook, value) {}
 
 std::string HookCard::str() const
 {

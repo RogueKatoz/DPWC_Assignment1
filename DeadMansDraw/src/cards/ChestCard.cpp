@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-ChestCard::ChestCard(int value)
-{
-	Card(Chest, value);
-}
+ChestCard::ChestCard(int value) : Card(Chest, value) {}
 
 std::string ChestCard::str() const
 {

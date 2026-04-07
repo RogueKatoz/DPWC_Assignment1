@@ -149,23 +149,29 @@ bool Player::BankHasCards()
 Card* Player::stealBankCard()
 // List highest card of each type in bank, ask which to take, and return it, deleting it from the bank.
 {
+	// Check from highest value first.
 	CardCollection* cardsToSteal;
-	for (CardType type : CARD_TYPES)
+	for (int i = 9, i > 0, i--)
 	{
-		Card* highestCard; int highestValue = 0;
-		for (Card* card : *_bank)
+		for (Card* cardA : *_bank)
 		{
-			// Get highest card of this type.
-			if (card->type() == type && card->value() > highestValue)
+			// If card is found of this value, check steal collection to see if card of same type already exists.
+			if (card->value() == i)
 			{
-				highestCard = card;
-				highestValue = card->value();
+				int addCard = 1;
+				for (Card* cardB : cardsToSteal)
+				{
+					if (cardA->type() == cardB->type())
+						addCard = 0;
+						break;
+					}
+				}
+
+				if (addCard == 1)
+					cardsToSteal->push_back(cardA);
 			}
 		}
-		if (highestCard != NULL)
-		{
-			cardsToSteal->push_back(highestCard);
-		}
+
 	}
 
 	// Print cards to steal.

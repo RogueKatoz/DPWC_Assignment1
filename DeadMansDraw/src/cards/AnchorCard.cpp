@@ -13,4 +13,5 @@ std::string AnchorCard::str() const
 
 void AnchorCard::play(Game& game, Player& player)
 {
+	std::cout << "\tEffect not yet implemented." << std::endl;
 }

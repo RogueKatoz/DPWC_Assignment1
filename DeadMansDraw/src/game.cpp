@@ -156,7 +156,7 @@ void Game::playTurn()
 	}
 }
 
-bool Game::promptDrawCard()
+bool Game::promptDrawCard() const
 {
 	char input;
 	std::cout << "Draw again? (y/n): ";
@@ -190,7 +190,7 @@ Card* Game::drawCardDiscard()
 	return drawnCard;
 }	
 
-Card* Game::peekDeck()
+Card* Game::peekDeck() const
 {
 	if (_deck->empty())
 	{

@@ -16,17 +16,17 @@ public:
 
 	Player();
 
-	int calculateScore();
+	int calculateScore() const;
 	std::string getName() const;
 
 	void playCard(Card* card, Game& game);
-	bool isBust();
-	bool playAreaContains(CardType type);
+	bool isBust() const;
+	bool playAreaContains(CardType type) const;
 	int playAreaSize();
 	void bankPlayedCards(Game& game);
 	void discardPlayedCards(Game& game);
 	void printPlayArea() const;
-	void printBank();
+	void printBank() const;
 	void printCollection(const CardCollection& cards) const;
 	bool bankHasCards() const;
 	Card* stealBankCard();

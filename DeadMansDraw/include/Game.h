@@ -24,10 +24,10 @@ public:
 	void startGame();
 	bool endGame() const;
 	void playTurn();
-	bool promptDrawCard();
+	bool promptDrawCard() const;
 	Card* drawCardDeck();
 	Card* drawCardDiscard();
-	Card* peekDeck();
+	Card* peekDeck() const;
 	void discardCard(Card& card);
 	Player* currentPlayer() const;
 	Player* otherPlayer() const;

@@ -15,7 +15,7 @@ Player::Player()
 	_bank = new CardCollection;
 }
 
-int Player::calculateScore()
+int Player::calculateScore() const
 {
 	int score = 0;
 	if (_bank->size() != 0)
@@ -57,7 +57,7 @@ void Player::playCard(Card* card, Game& game)
 		discardPlayedCards(game);
 }
 
-bool Player::isBust()
+bool Player::isBust() const
 // Go through play area cards and return true if two of the same suit exist.
 {
 	for (Card* cardA : *_playArea)
@@ -73,7 +73,7 @@ bool Player::isBust()
 	return false;
 }
 
-bool Player::playAreaContains(CardType type)
+bool Player::playAreaContains(CardType type) const
 {
 	for (Card* card : *_playArea)
 	{
@@ -122,7 +122,7 @@ void Player::printPlayArea() const
 	std::cout << std::endl;
 }
 
-void Player::printBank()
+void Player::printBank() const
 {
 	std::cout << _name << "'s Bank:" << std::endl;
 	printCollection(*_bank);

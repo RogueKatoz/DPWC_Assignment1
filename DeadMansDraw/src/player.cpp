@@ -71,8 +71,26 @@ bool Player::isBust()
 	return false;
 }
 
-void Player::bankPlayedCards()
+bool Player::playAreaContains(CardType type)
 {
+	for (Card* card : *_playArea)
+	{
+		if (card->type() == type)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void Player::bankPlayedCards()
+// Add all cards in play area to bank, then clear play area.
+{
+	// Alert for chest/key combo.
+	for (Card* card : *_playArea)
+	{
+		card->willAddToBank(game, *this);
+	}
 	while (_playArea->size() > 0)
 	{
 		_bank->push_back(_playArea->back());

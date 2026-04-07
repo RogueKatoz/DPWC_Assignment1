@@ -13,4 +13,10 @@ std::string ChestCard::str() const
 
 void ChestCard::play(Game& game, Player& player)
 {
+
+}
+
+void willAddToBank(Game& game, Player& player)
+{
+
 }

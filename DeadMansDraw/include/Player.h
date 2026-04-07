@@ -19,6 +19,7 @@ public:
 
 	void playCard(Card* card, Game& game);
 	bool isBust();
+	bool playAreaContains(CardType type);
 	void bankPlayedCards();
 	void discardPlayedCards(Game& game);
 	void printPlayedArea();

@@ -7,8 +7,8 @@ class Player;
 class Game {
 private:
 	Player* _players[2];
-	CardCollection* _deck;
-	CardCollection* _discardPile;
+	CardCollection _deck;
+	CardCollection _discardPile;
 	int _currentRound;
 	int _currentTurn;
 	int _currentPlayer;
@@ -20,7 +20,7 @@ public:
 	void initialisePlayers();
 	void createDeck();
 	Card* createCard(CardType type, int value);
-	void shuffleDeck() const;
+	void shuffleDeck(CardCollection& cards);
 	void startGame();
 	bool endGame() const;
 	void playTurn();

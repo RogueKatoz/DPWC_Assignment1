@@ -25,8 +25,6 @@ Game::Game()
 {
 	_players[0] = nullptr;
 	_players[1] = nullptr;
-	_deck = new CardCollection;
-	_discardPile = new CardCollection;
 	_currentRound = 0;
 	_currentTurn = 0;
 	_currentPlayer = 0;
@@ -59,14 +57,14 @@ void Game::createDeck()
 		{
 			for (int val = 4; val <= 9; val++)
 			{
-				_deck->push_back(createCard(type, val));
+				_deck.push_back(createCard(type, val));
 			}
 		}
 		else
 		{
 			for (int val = 2; val <= 7; val++)
 			{
-				_deck->push_back(createCard(type, val));
+				_deck.push_back(createCard(type, val));
 			}
 		}
 	}
@@ -124,7 +122,7 @@ void Game::startGame()
 bool Game::endGame() const
 // End game if max turns are reached or deck is empty.
 {
-	if (_currentTurn > MAX_TURNS || _deck->empty())
+	if (_currentTurn > MAX_TURNS || _deck.empty())
 	{
 		return true;
 	}
@@ -170,38 +168,38 @@ bool Game::promptDrawCard() const
 
 Card* Game::drawCardDeck()
 {
-	if (_deck->size() == 0)
+	if (_deck.size() == 0)
 	{
 		return NULL;
 	}
-	Card* drawnCard = _deck->back();
-	_deck->pop_back();
+	Card* drawnCard = _deck.back();
+	_deck.pop_back();
 	return drawnCard;
 }
 
 Card* Game::drawCardDiscard()
 {
-	if (_discardPile->size() == 0)
+	if (_discardPile.size() == 0)
 	{
 		return NULL;
 	}
-	Card* drawnCard = _discardPile->back();
-	_discardPile->pop_back();
+	Card* drawnCard = _discardPile.back();
+	_discardPile.pop_back();
 	return drawnCard;
 }	
 
 Card* Game::peekDeck() const
 {
-	if (_deck->empty())
+	if (_deck.empty())
 	{
 		return NULL;
 	}
-	return _deck->back();
+	return _deck.back();
 }
 
 void Game::discardCard(Card& card)
 {
-	_discardPile->push_back(&card);
+	_discardPile.push_back(&card);
 }
 
 Player* Game::currentPlayer() const
@@ -226,11 +224,9 @@ Game::~Game()
 	delete _players[0];
 	delete _players[1];
 	
-	for (Card* card : *_deck)
+	for (Card* card : _deck)
 		delete card;
-	delete _deck;
 
-	for (Card* card : *_discardPile)
+	for (Card* card : _discardPile)
 		delete card;
-	delete _discardPile;
 }

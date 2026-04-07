@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Player.h"
 
+#include <iostream>
 #include <string>
 
 AnchorCard::AnchorCard(int value) : Card(Anchor, value) {}

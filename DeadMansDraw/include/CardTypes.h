@@ -6,9 +6,10 @@ class Card;
 typedef std::vector<Card*> CardCollection;
 
 enum CardType {
-	Cannon, 
+	Cannon,
 	Chest, 
-	Key,  
+	Key,
+	Anchor,
 	Sword, 
 	Hook, 
 	Oracle, 

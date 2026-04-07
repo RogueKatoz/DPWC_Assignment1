@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Player.h"
 
+#include <algorithm>
 #include <iostream>
 
 MapCard::MapCard(int value) : Card(Map, value) {}

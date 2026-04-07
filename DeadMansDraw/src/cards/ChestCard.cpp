@@ -26,12 +26,12 @@ void ChestCard::willAddToBank(Game& game, Player& player)
 		Card* drawnCard = game.drawCardDiscard();
 		if (drawnCard != nullptr)
 		{
-			discardCards->push_back(drawnCard);
+			discardCards.push_back(drawnCard);
 		}
 	}
 
 	std::cout << "\tChest and key activated. Added ";
-	for (Card* card : *discardCards)
+	for (Card* card : discardCards)
 	{
 		std::cout << card->str() << ", ";
 		player.addToBank(card);

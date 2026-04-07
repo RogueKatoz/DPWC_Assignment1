@@ -44,7 +44,7 @@ void MapCard::play(Game& game, Player& player)
 
 	// Choose card from 3, discard rest, and play the card.
 	Card* cardToPlay = (*discardCards)[cardIndex];
-	discardCards->erase(std::remove(_bank->begin(), bank->end(), cardToPlay), _bank->end());
+	discardCards->erase(std::remove(discardCards->begin(), discardCards->end(), cardToPlay), discardCards->end());
 	for (Card* card : *discardCards)
 	{
 		game.discardCard(*card);

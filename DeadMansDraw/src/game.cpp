@@ -185,4 +185,10 @@ Game::~Game()
 {
 	delete _players[0];
 	delete _players[1];
+	
+	for (Card* card : *_deck)
+		delete card;
+
+	for (Card* card : *_discardPile)
+		delete card;
 }

@@ -3,7 +3,6 @@
 #include <CardTypes.h>
 
 #include <string>
-#include <vector>
 
 class Game;
 class Player;

@@ -426,3 +426,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+/.vs
+/DeadMansDraw/.vs/DeadMansDraw.slnx
+/docs/~$stem_design.docx

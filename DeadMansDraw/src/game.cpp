@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Card.h"
 #include "Player.h"
+#include "game_title.h"
 
 #include <bits/stdc++.h>
 #include <iostream>
@@ -26,6 +27,9 @@ void Game::initialiseGame()
 	initialisePlayers();
 	createDeck();
 	shuffleDeck();
+
+std::cout << GAME_TITLE_H << std::endl;
+std::cout << "Starting Dead Man's Draw++!" << std::endl;
 }
 
 void Game::initialisePlayers()

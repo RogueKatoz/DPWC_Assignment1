@@ -14,7 +14,7 @@ std::string HookCard::str() const
 
 void HookCard::play(Game& game, Player& player)
 {
-	if (game.otherPlayer()->bankHasCards() == 0)
+	if (player.bankHasCards() == 0)
 	{
 		std::cout << "No cards in your bank. Play continues." << std::endl;
 		return;

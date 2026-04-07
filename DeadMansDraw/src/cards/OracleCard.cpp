@@ -13,4 +13,5 @@ std::string OracleCard::str() const
 
 void OracleCard::play(Game& game, Player& player)
 {
+	if (game-)
 }

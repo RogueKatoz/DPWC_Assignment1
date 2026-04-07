@@ -23,6 +23,7 @@ public:
 	void playTurn();
 	bool promptDrawCard();
 	Card* drawCard();
+	Card* peekDeck();
 	void discardCard(Card& card);
 	Player* currentPlayer() const;
 	Player* otherPlayer() const;

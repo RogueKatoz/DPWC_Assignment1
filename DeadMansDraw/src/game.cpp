@@ -122,6 +122,15 @@ Card* Game::drawCard()
 	return _deck->pop();
 }
 
+Card* Game::peekDeck()
+{
+	if (_deck->empty())
+	{
+		return NULL;
+	}
+	return _deck->back();
+}
+
 void Game::discardCard(Card& card)
 {
 	_discardPile->push_back(&card);

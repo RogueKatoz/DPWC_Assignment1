@@ -93,6 +93,8 @@ bool Game::endGame() const
 void Game::playTurn()
 // Go through single turn for current player.
 {
+	std::cout << _players[_currentPlayer]->getName() << "'s turn." << std::endl;
+	_players[_currentPlayer]->printBank();
 	while (1)
 	{
 		// Draw and play card if deck is not empty.
@@ -102,6 +104,8 @@ void Game::playTurn()
 
 		// Check if player is bust and break, or ask for another card.
 		if (_players[_currentPlayer]->isBust() == 1) break;
+
+		_players[_currentPlayer]->printPlayArea();
 		if (promptDrawCard() == 0)
 		{
 			_players[_currentPlayer]->bankPlayedCards();

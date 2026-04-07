@@ -22,7 +22,7 @@ public:
 	bool playAreaContains(CardType type);
 	void bankPlayedCards();
 	void discardPlayedCards(Game& game);
-	void printPlayedArea();
+	void printPlayArea();
 	void printBank();
 	void printCollection(const CardCollection cards);
 	bool BankHasCards();

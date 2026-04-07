@@ -107,7 +107,7 @@ void Player::discardPlayedCards(Game& game)
 	}
 }
 
-void Player::printPlayedArea()
+void Player::printPlayArea()
 {
 	std::cout << _name << "'s Play Area:" << std::endl;
 	printCollection(*_playArea);
@@ -117,12 +117,15 @@ void Player::printPlayedArea()
 void Player::printBank()
 {
 	std::cout << _name << "'s Bank:" << std::endl;
+	printCollection(*_bank);
 	std::cout << "| Score: " << calculateScore() << std::endl;
 }
 
 void Player::printCollection(const CardCollection cards)
 // Go through each type of card present in play area/bank and print in descending order.
 {
+	if (cards.size() == 0) return;
+
 	for (CardType typetoPrint : CARD_TYPES)
 	{
 		// Get all cards of this type.
@@ -137,6 +140,7 @@ void Player::printCollection(const CardCollection cards)
 		if (cardsToPrint->size() == 0) continue;
 
 		// Print all cards of this type in descending order of value.
+		std::cout << "\t";
 		while (cardsToPrint->size() != 0)
 		{
 			Card* highestCard; int highestValue = 0;
@@ -148,7 +152,7 @@ void Player::printCollection(const CardCollection cards)
 					highestValue = card->value();
 				}
 			}
-			std::cout << " " << highestCard->str();
+			std::cout << highestCard->str() << " ";
 		}
 		std::cout << std::endl;
 	}

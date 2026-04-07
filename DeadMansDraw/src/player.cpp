@@ -85,6 +85,11 @@ bool Player::playAreaContains(CardType type)
 	return false;
 }
 
+int Player::playAreaSize()
+{
+	return _playArea->size();
+}
+
 void Player::bankPlayedCards(Game& game)
 // Add all cards in play area to bank, then clear play area.
 {

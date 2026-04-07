@@ -22,12 +22,12 @@ public:
 	void playCard(Card* card, Game& game);
 	bool isBust();
 	bool playAreaContains(CardType type);
-	void bankPlayedCards();
+	void bankPlayedCards(Game& game);
 	void discardPlayedCards(Game& game);
-	void printPlayArea();
+	void printPlayArea() const;
 	void printBank();
 	void printCollection(const CardCollection& cards) const;
-	bool bankHasCards();
+	bool bankHasCards() const;
 	Card* stealBankCard();
 	void addToPlayArea(Card* card);
 	void addToBank(Card* card);

@@ -11,7 +11,6 @@ Player::Player()
 	"Sasha", "Tina", "Marge" };
 	_name = names[rand() % 10];
 
-	_score = 0;
 	_playArea = new CardCollection;
 	_bank = new CardCollection;
 }
@@ -111,7 +110,7 @@ void Player::discardPlayedCards(Game& game)
 	}
 }
 
-void Player::printPlayArea()
+void Player::printPlayArea() const
 {
 	std::cout << _name << "'s Play Area:" << std::endl;
 	printCollection(*_playArea);
@@ -163,7 +162,7 @@ void Player::printCollection(const CardCollection& cards) const
 	}
 }
 
-bool Player::bankHasCards()
+bool Player::bankHasCards() const
 // Simply check whether or not the bank is empty.
 {
 	if (_bank->size() == 0)

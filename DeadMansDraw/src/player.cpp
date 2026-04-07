@@ -44,15 +44,11 @@ void Player::playCard(Card* card, Game& game)
 {
 	std::cout << _name << " draws a " << card->str() << std::endl;
 	_playArea.push_back(card);
-	if (isBust() == 1)
-	{
-		discardPlayedCards(game);
-	} else 
-		card->play(game, *this);
 
-	// Check if bust again after card has been played.
-	if (isBust() == 1)
-		discardPlayedCards(game);
+	// if player busts after drawing card, don't play ability.
+	if (isBust() == 1) return;
+
+	card->play(game, *this);
 }
 
 bool Player::isBust() const

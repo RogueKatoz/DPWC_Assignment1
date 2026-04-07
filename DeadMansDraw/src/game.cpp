@@ -141,9 +141,14 @@ void Game::playTurn()
 		if (cardToPlay == NULL) break;
 		currentPlayer()->playCard(cardToPlay, *this);
 
-		// Check if player is bust and break, or ask for another card.
-		if (currentPlayer()->isBust() == 1) break;
+		// If player has busted, discard play area and end turn.
+		if (currentPlayer()->isBust() == true)
+		{
+			currentPlayer()->discardPlayedCards(*this);
+			break;
+		}
 
+		// Ask if player wants to draw again, otherwise bank cards.
 		currentPlayer()->printPlayArea();
 		if (promptDrawCard() == 0)
 		{

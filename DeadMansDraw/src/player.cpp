@@ -14,6 +14,7 @@ Player::Player()
 }
 
 int Player::calculateScore() const
+// Go through each type of card in bank and add value of highest card of that type to score.
 {
 	int score = 0;
 	if (_bank.size() != 0)
@@ -68,6 +69,7 @@ bool Player::isBust() const
 }
 
 bool Player::playAreaContains(CardType type) const
+// Check if certain type exists in play area. Used for chest/key combo.
 {
 	for (Card* card : _playArea)
 	{
@@ -100,6 +102,7 @@ void Player::bankPlayedCards(Game& game)
 }
 
 void Player::discardPlayedCards(Game& game)
+// Alert player of bust, add all cards in play area to discard pile, then clear play area.
 {
 	std::cout << "BUST! " << _name << " loses all cards in play area." << std::endl;
 	while (_playArea.size() > 0)
@@ -110,6 +113,7 @@ void Player::discardPlayedCards(Game& game)
 }
 
 void Player::printPlayArea() const
+// Print all cards in play area, grouped by type and sorted by value within each type.
 {
 	std::cout << _name << "'s Play Area:" << std::endl;
 	printCollection(_playArea);
@@ -117,6 +121,7 @@ void Player::printPlayArea() const
 }
 
 void Player::printBank() const
+// Print all cards in bank, grouped by type and sorted by value within each type. Also print score.
 {
 	std::cout << _name << "'s Bank:" << std::endl;
 	printCollection(_bank);
@@ -205,7 +210,6 @@ Card* Player::stealBankCard()
 	}
 
 	// Print cards to steal.
-	
 	for (int i = 0; i < cardsToSteal.size(); i++)
 	{
 		std::cout << "\t(" << i+1 << ") " << (cardsToSteal)[i]->str() << std::endl;

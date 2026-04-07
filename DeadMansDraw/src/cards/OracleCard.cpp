@@ -13,6 +13,7 @@ std::string OracleCard::str() const
 }
 
 void OracleCard::play(Game& game, Player& player)
+// Look at the top card of the deck and reveal it to the player.
 {
 	Card* nextCard = game.peekDeck();
 	if (nextCard == nullptr)

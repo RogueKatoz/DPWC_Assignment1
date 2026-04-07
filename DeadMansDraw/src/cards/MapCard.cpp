@@ -13,6 +13,7 @@ std::string MapCard::str() const
 }
 
 void MapCard::play(Game& game, Player& player)
+// Draw 3 cards from the discard pile, pick one to add to play area, and discard the rest.
 {
 	CardCollection discardCards;
 	for (int i = 0; i < 3; i++)

@@ -21,6 +21,5 @@ void SwordCard::play(Game& game, Player& player)
 	}
 
 	std::cout << "\tSteal the top card of any suit from the other player's Bank into your Play Area:" << std::endl;
-	Card* cardToSteal = game->otherPlayer()->stealBankCard();
-	player->addToPlayArea(cardToSteal);
+	player->playCard(game->otherPlayer()->stealBankCard(), game);
 }

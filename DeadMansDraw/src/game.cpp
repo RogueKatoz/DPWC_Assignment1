@@ -149,7 +149,7 @@ void Game::playTurn()
 		currentPlayer()->printPlayArea();
 		if (promptDrawCard() == 0)
 		{
-			currentPlayer()->bankPlayedCards();
+			currentPlayer()->bankPlayedCards(*this);
 			printBank();
 			break;
 		}

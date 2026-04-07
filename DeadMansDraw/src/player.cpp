@@ -86,7 +86,7 @@ bool Player::playAreaContains(CardType type)
 	return false;
 }
 
-void Player::bankPlayedCards()
+void Player::bankPlayedCards(Game& game)
 // Add all cards in play area to bank, then clear play area.
 {
 	// Alert for chest/key combo.

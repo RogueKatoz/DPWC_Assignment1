@@ -3,6 +3,7 @@
 #include "Game.h"
 
 #include <algorithm>
+#include <iostream>
 
 Player::Player()
 {
@@ -162,6 +163,7 @@ Card* Player::stealBankCard()
 				for (Card* cardB : cardsToSteal)
 				{
 					if (cardA->type() == cardB->type())
+					{
 						addCard = 0;
 						break;
 					}
@@ -185,7 +187,7 @@ Card* Player::stealBankCard()
 	int maxChoice = cardsToSteal->size();
 	int cardIndex = 0;
 
-	while (cardIndex > 0 && cardIndex <= maxChoice)
+	while (cardIndex <= 0 || cardIndex > maxChoice)
 	{
 		std::cout << "\tWhich card do you pick? ";
 		std::cin >> cardIndex;

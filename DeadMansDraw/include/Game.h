@@ -22,7 +22,8 @@ public:
 	bool endGame() const;
 	void playTurn();
 	bool promptDrawCard();
-	Card* drawCard();
+	Card* drawCardDeck();
+	Card* drawCardDiscard();
 	Card* peekDeck();
 	void discardCard(Card& card);
 	Player* currentPlayer() const;

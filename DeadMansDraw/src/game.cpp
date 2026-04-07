@@ -117,10 +117,23 @@ bool Game::promptDrawCard()
 	else return 0;
 }
 
-Card* Game::drawCard()
+Card* Game::drawCardDeck()
 {
-	return _deck->pop();
+	if (_deck->size() == 0)
+	{
+		return NULL;
+	}
+	return _deck->pop_back();
 }
+
+Card* Game::drawCardDiscard()
+{
+	if (_discardPile->size() == 0)
+	{
+		return NULL;
+	}
+	return _discardPile->pop_back();
+}	
 
 Card* Game::peekDeck()
 {

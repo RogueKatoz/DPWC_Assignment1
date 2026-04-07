@@ -11,7 +11,7 @@ std::string MapCard::str() const
 
 void MapCard::play(Game& game, Player& player)
 {
-	CardCollection* discardCards;
+	CardCollection discardCards;
 	for (int i = 0; i < 3; i++)
 	{
 		Card* drawnCard = game.drawCardDiscard();
@@ -42,8 +42,8 @@ void MapCard::play(Game& game, Player& player)
 		std::cout << std::endl;
 	}
 
-	// Choose card from 3, discard rest, and play the card.
-	Card* cardToPlay = (*discardCards)[cardIndex];
+	// Take chosen card, discard rest, and play the card.
+	Card* cardToPlay = (*discardCards)[cardIndex-1];
 	discardCards->erase(std::remove(discardCards->begin(), discardCards->end(), cardToPlay), discardCards->end());
 	for (Card* card : *discardCards)
 	{

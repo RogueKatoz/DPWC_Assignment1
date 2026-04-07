@@ -88,7 +88,7 @@ void Player::discardPlayedCards(Game& game)
 	}
 }
 
-void Player::printPlayedCards()
+void Player::printPlayedArea()
 {
 	std::cout << _name << "'s Play Area:" << std::endl;
 	printCollection(*_playArea);
@@ -101,7 +101,7 @@ void Player::printBank()
 	std::cout << "| Score: " << calculateScore() << std::endl;
 }
 
-void printCollection(const CardCollection cards)
+void Player::printCollection(const CardCollection cards)
 // Go through each type of card present in play area/bank and print in descending order.
 {
 	for (CardType typetoPrint : CARD_TYPES)
@@ -120,19 +120,59 @@ void printCollection(const CardCollection cards)
 		// Print all cards of this type in descending order of value.
 		while (cardsToPrint->size() != 0)
 		{
-			Card* highestCard;
+			Card* highestCard; int highestValue = 0;
 			for (Card* card : *cardsToPrint)
 			{
-				if (card->value() > highestCard->value())
+				if (card->value() > highestValue)
 				{
 					highestCard = card;
+					highestValue = card->value();
 				}
 			}
 			std::cout << " " << highestCard->str();
 		}
 		std::cout << std::endl;
 	}
-}	
+}
+
+Card* Player::stealBankCard()
+// List highest card of each type in bank, ask which to take, and return it, deleting it from the bank.
+{
+	CardCollection* cardsToSteal;
+	for (CardType type : CARD_TYPES)
+	{
+		Card* highestCard; int highestValue = 0;
+		for (Card* card : *_bank)
+		{
+			// Get highest card of this type.
+			if (card->type() == type && card->value() > highestValue)
+			{
+				highestCard = card;
+				highestValue = card->value();
+			}
+		}
+		if (highestCard != NULL)
+		{
+			cardsToSteal->push_back(highestCard);
+		}
+	}
+
+	// Print cards to steal.
+	for (int i = 0; i < cardsToSteal->size(); i++)
+	{
+		std::cout << "(" << i << ") " << (*cardsToSteal)[i]->str() << std::endl;
+	}
+
+	// Ask user which card to steal.
+	std::cout << "Which card do you pick? ";
+	int cardIndex;
+	std::cin >> cardIndex;
+
+	// Remove card from bank and return it.
+	Card* cardToSteal = (*cardsToSteal)[cardIndex];
+	_bank->erase(std::remove(_bank->begin(), bank->end(), cardToSteal), _bank->end());
+	return cardToSteal;
+}
 
 Player::~Player()
 {

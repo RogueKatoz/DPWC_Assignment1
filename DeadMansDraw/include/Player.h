@@ -21,9 +21,10 @@ public:
 	bool isBust();
 	void bankPlayedCards();
 	void discardPlayedCards(Game& game);
-	void printPlayedCards();
+	void printPlayedArea();
 	void printBank();
 	void printCollection(const CardCollection cards);
+	Card* stealBankCard();
 
 	~Player();
 };

@@ -16,8 +16,8 @@ Game::Game()
 	_players[1] = nullptr;
 	_deck = new CardCollection;
 	_discardPile = new CardCollection;
-	_currentRound = 0;
-	_currentTurn = 0;
+	_currentRound = 1;
+	_currentTurn = 1;
 	_currentPlayer = 0;
 }
 
@@ -73,6 +73,8 @@ void Game::startGame()
 	initialiseGame();
 	while (endGame() == 0)
 	{
+		std::cout << "--- Round " << _currentRound << ", Turn " << _currentTurn << " ---" << std::endl;
+
 		playTurn();
 		switchPlayer();
 	}
@@ -168,6 +170,10 @@ void Game::switchPlayer()
 {
 	_currentPlayer = _currentPlayer + 1 % 2;
 	_otherPlayer = _otherPlayer + 1 % 2;
+
+	_currentTurn += 1;
+	if (_currentPlayer == 0)
+		_currentRound += 1;
 }
 
 Game::~Game()

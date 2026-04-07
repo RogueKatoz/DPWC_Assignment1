@@ -138,7 +138,7 @@ void Game::playTurn()
 		// Draw and play card if deck is not empty.
 		Card* cardToPlay = drawCardDeck();
 		if (cardToPlay == NULL) break;
-		_players[_currentPlayer]->playCard(cardToPlay, this);
+		_players[_currentPlayer]->playCard(cardToPlay, *this);
 
 		// Check if player is bust and break, or ask for another card.
 		if (_players[_currentPlayer]->isBust() == 1) break;
@@ -153,11 +153,10 @@ void Game::playTurn()
 }
 
 bool Game::promptDrawCard()
-// It will be assumed that if any character other than 'y' is entered, turn ends.
 {
 	char input;
 	std::cout << "Draw again? (y/n): ";
-	std::cin.get(input);
+	std::cin >> input;
 	if (input == 'y')
 	{
 		return 1;
@@ -214,8 +213,7 @@ Player* Game::otherPlayer() const
 
 void Game::switchPlayer()
 {
-	_currentPlayer = _currentPlayer + 1 % 2;
-	_otherPlayer = _otherPlayer + 1 % 2;
+	_currentPlayer = (_currentPlayer + 1) % 2;
 
 	_currentTurn += 1;
 	if (_currentPlayer == 0)

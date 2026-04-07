@@ -8,7 +8,6 @@ class Game;
 class Player {
 private:
 	std::string _name;
-	int _score;
 	CardCollection _playArea;
 	CardCollection _bank;
 

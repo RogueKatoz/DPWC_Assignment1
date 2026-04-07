@@ -149,7 +149,7 @@ void Player::printCollection(const CardCollection& cards) const
 		std::cout << "\t";
 		while (cardsToPrint.size() > 0)
 		{
-			Card* highestCard; int highestValue = 0;
+			Card* highestCard = nullptr; int highestValue = 0;
 			for (Card* card : cardsToPrint)
 			{
 				if (card->value() > highestValue)
@@ -158,8 +158,11 @@ void Player::printCollection(const CardCollection& cards) const
 					highestValue = card->value();
 				}
 			}
-			std::cout << highestCard->str() << " ";
-			cardsToPrint.erase(std::remove(cardsToPrint.begin(), cardsToPrint.end(), highestCard), cardsToPrint.end());
+			if (highestCard != nullptr)
+			{
+				std::cout << highestCard->str() << " ";
+				cardsToPrint.erase(std::remove(cardsToPrint.begin(), cardsToPrint.end(), highestCard), cardsToPrint.end());
+			}
 		}
 		std::cout << std::endl;
 	}

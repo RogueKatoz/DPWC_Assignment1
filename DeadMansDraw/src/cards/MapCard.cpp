@@ -31,7 +31,7 @@ void MapCard::play(Game& game, Player& player)
 	}
 
 	int maxChoice = discardCards->size();
-	std::cout << "\tDrawn 3 cards from the discard and pick one to add to the play area: " << std::endl;
+	std::cout << "\tDraw 3 cards from the discard and pick one to add to the play area:" << std::endl;
 	for (int i = 0; i < maxChoice; i++)
 	{
 		std::cout << "\t(" << i+1 << ") " << (*discardCards)[i]->str() << std::endl;

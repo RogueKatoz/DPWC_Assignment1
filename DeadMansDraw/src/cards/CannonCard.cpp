@@ -24,4 +24,5 @@ void CannonCard::play(Game& game, Player& player)
 	std::cout << "\tShoot the top card of any suit from the other player's Bank into the Discard Pile:" << std::endl;
 	Card* cardToDiscard = game->otherPlayer()->stealBankCard();
 	game->discardCard(*cardToDiscard);
+	std::cout << "\t You shoot the " << cardToDiscard->str() << " out of the other player's Bank" << std::endl;
 }

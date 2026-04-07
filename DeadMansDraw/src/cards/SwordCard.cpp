@@ -20,7 +20,7 @@ void SwordCard::play(Game& game, Player& player)
 		return;
 	}
 
-	std::cout << "\tShoot the top card of any suit from the other player's Bank into the Discard Pile:" << std::endl;
-	Card* cardToDiscard = game->otherPlayer()->stealBankCard();
-	game->discardCard(*cardToDiscard);
+	std::cout << "\tSteal the top card of any suit from the other player's Bank into your Play Area:" << std::endl;
+	Card* cardToSteal = game->otherPlayer()->stealBankCard();
+	player->addToPlayArea(cardToSteal);
 }

@@ -39,7 +39,7 @@ void Game::initialiseGame()
 	createDeck();
 	shuffleDeck(_deck);
 
-std::cout << GAME_TITLE_H << std::endl;
+std::cout << GAME_TITLE << std::endl;
 std::cout << "Starting Dead Man's Draw++!" << std::endl;
 }
 

@@ -8,8 +8,7 @@ typedef std::vector<Card*> CardCollection;
 enum CardType {
 	Cannon, 
 	Chest, 
-	Key, 
-	Anchor, 
+	Key,  
 	Sword, 
 	Hook, 
 	Oracle, 
@@ -23,7 +22,6 @@ constexpr CardType CARD_TYPES[] = {
 	Cannon, 
 	Chest, 
 	Key, 
-	Anchor, 
 	Sword, 
 	Hook, 
 	Oracle, 

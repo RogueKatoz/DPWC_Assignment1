@@ -136,7 +136,7 @@ void Game::playTurn()
 	while (1)
 	{
 		// Draw and play card if deck is not empty.
-		Card* cardToPlay = drawCard();
+		Card* cardToPlay = drawCardDeck();
 		if (cardToPlay == NULL) break;
 		_players[_currentPlayer]->playCard(cardToPlay, this);
 

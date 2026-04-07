@@ -18,7 +18,7 @@ void KrakenCard::play(Game& game, Player& player)
 	
 	for (int i = 0; i < 3; i++)
 	{
-		Card* drawnCard = game.drawCard();
+		Card* drawnCard = game.drawCardDeck();
 		if (drawnCard != nullptr && player.isBust() == 0)
 		{
 			player.playCard(drawnCard, game);

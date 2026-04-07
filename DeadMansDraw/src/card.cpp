@@ -17,7 +17,7 @@ const CardType& Card::type() const
 	return _type;
 }
 
-int Card::value()
+int Card::value() const
 {
 	return _value;
 }

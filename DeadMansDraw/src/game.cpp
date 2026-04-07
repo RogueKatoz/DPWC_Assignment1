@@ -94,6 +94,7 @@ Card* Game::createCard(CardType type, int value)
 		case Kraken:
 			return new KrakenCard(value);
 	}
+	return nullptr;
 }
 
 void Game::shuffleDeck(CardCollection& cards) {

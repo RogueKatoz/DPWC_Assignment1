@@ -1,0 +1,271 @@
+#include "Game.h"
+#include "Player.h"
+#include "Card.h"
+#include "game_title.h"
+
+#include "cards/AnchorCard.h"
+#include "cards/CannonCard.h"
+#include "cards/ChestCard.h"
+#include "cards/KeyCard.h"
+#include "cards/SwordCard.h"
+#include "cards/HookCard.h"
+#include "cards/OracleCard.h"
+#include "cards/MapCard.h"
+#include "cards/MermaidCard.h"
+#include "cards/KrakenCard.h"
+
+#include <iostream>
+#include <vector>
+#include <random>
+#include <algorithm>
+#include <stdlib.h>
+
+#define MAX_TURNS 20
+
+Game::Game()
+// Create inital states for the game.
+{
+	_players[0] = nullptr;
+	_players[1] = nullptr;
+	_currentRound = 0;
+	_currentTurn = 0;
+	_currentPlayer = 0;
+}
+
+void Game::initialiseGame()
+// Call initialisation stuff.
+{
+	initialisePlayers();
+	createDeck();
+	shuffleDeck(_deck);
+
+std::cout << GAME_TITLE << std::endl;
+std::cout << "Starting Dead Man's Draw++!" << std::endl;
+}
+
+void Game::initialisePlayers()
+// Create both players.
+{
+	srand(time(NULL));
+	_players[0] = new Player();
+	_players[1] = new Player();
+}
+
+void Game::createDeck()
+// Add 6 cards of each suit to the deck collection.
+{
+	for (CardType type : CARD_TYPES)
+	{
+		if (type == Mermaid)
+		{
+			for (int val = 4; val <= 9; val++)
+			{
+				_deck.push_back(createCard(type, val));
+			}
+		}
+		else
+		{
+			for (int val = 2; val <= 7; val++)
+			{
+				_deck.push_back(createCard(type, val));
+			}
+		}
+	}
+}
+
+Card* Game::createCard(CardType type, int value)
+{
+	switch (type)
+	{
+		case Cannon:
+			return new CannonCard(value);
+		case Chest:
+			return new ChestCard(value);
+		case Key:
+			return new KeyCard(value);
+		case Sword:
+			return new SwordCard(value);
+		case Hook:
+			return new HookCard(value);
+		case Oracle:
+			return new OracleCard(value);
+		case Map:
+			return new MapCard(value);
+		case Mermaid:
+			return new MermaidCard(value);
+		case Kraken:
+			return new KrakenCard(value);
+	}
+	return nullptr;
+}
+
+void Game::shuffleDeck(CardCollection& cards) {
+	CardCollection shuffleDeck{ cards.begin(), cards.end() };
+	std::shuffle(shuffleDeck.begin(), shuffleDeck.end(), std::mt19937{ std::random_device{}() });
+	std::copy(shuffleDeck.begin(), shuffleDeck.end(), cards.begin());
+}
+
+void Game::startGame()
+// Initialise and then play through turns, ending if condition is met.
+{
+	initialiseGame();
+	while (endGame() == 0)
+	{
+		// Increment turn and round, then print.
+		_currentTurn += 1;
+		if (_currentPlayer == 0)
+			_currentRound += 1;
+		std::cout << "--- Round " << _currentRound << ", Turn " << _currentTurn << " ---" << std::endl;
+
+		playTurn();
+		switchPlayer();
+	}
+	
+	// Once game is over, print final scores and winner.
+	std::cout << "--- Game Over ---" << std::endl;
+	currentPlayer()->printBank();
+	otherPlayer()->printBank();
+
+	int player1Score = currentPlayer()->calculateScore();
+	int player2Score = otherPlayer()->calculateScore();
+
+	if (player1Score > player2Score)
+	{
+		std::cout << currentPlayer()->getName() << " wins!" << std::endl;
+
+	}
+	else if (player2Score > player1Score)
+	{
+		std::cout << otherPlayer()->getName() << " wins!" << std::endl;
+	}
+	else
+	{
+		std::cout << "It's a tie!" << std::endl;
+	}
+	
+}
+
+bool Game::endGame() const
+// End game if max turns are reached or deck is empty.
+{
+	if (_currentTurn > MAX_TURNS || _deck.empty())
+	{
+		return true;
+	}
+	else return false;
+}
+
+void Game::playTurn()
+// Go through single turn for current player.
+{
+	std::cout << currentPlayer()->getName() << "'s turn." << std::endl;
+	currentPlayer()->printBank();
+	while (1)
+	{
+		// Draw and play card if deck is not empty.
+		Card* cardToPlay = drawCardDeck();
+		if (cardToPlay == NULL) break;
+		currentPlayer()->playCard(cardToPlay, *this);
+
+		// If player has busted, discard play area and end turn.
+		if (currentPlayer()->isBust() == true)
+		{
+			currentPlayer()->discardPlayedCards(*this);
+			break;
+		}
+
+		// Ask if player wants to draw again, otherwise bank cards.
+		currentPlayer()->printPlayArea();
+		if (promptDrawCard() == 0)
+		{
+			currentPlayer()->bankPlayedCards(*this);
+			currentPlayer()->printBank();
+			break;
+		}
+	}
+}
+
+bool Game::promptDrawCard() const
+// Ask user if they want to draw another card.
+{
+	char input;
+	std::cout << "Draw again? (y/n): ";
+	std::cin >> input;
+	if (input == 'y')
+	{
+		return 1;
+	}
+	else return 0;
+}
+
+Card* Game::drawCardDeck()
+// Draw card from deck, removing it from the deck collection.
+{
+	if (_deck.size() == 0)
+	{
+		return NULL;
+	}
+	Card* drawnCard = _deck.back();
+	_deck.pop_back();
+	return drawnCard;
+}
+
+Card* Game::drawCardDiscard()
+// Draw card from discard pile, removing it from the discard collection.
+{
+	if (_discardPile.size() == 0)
+	{
+		return NULL;
+	}
+	Card* drawnCard = _discardPile.back();
+	_discardPile.pop_back();
+	return drawnCard;
+}	
+
+Card* Game::peekDeck() const
+// Look at top card of deck without removing it.
+{
+	if (_deck.empty())
+	{
+		return NULL;
+	}
+	return _deck.back();
+}
+
+void Game::discardCard(Card& card)
+// Add card to discard pile.
+{
+	_discardPile.push_back(&card);
+}
+
+Player* Game::currentPlayer() const
+// Return pointer to current player.
+{
+	return _players[_currentPlayer];
+}
+
+Player* Game::otherPlayer() const
+// Return pointer to other player.
+{
+	return _players[1 - _currentPlayer];
+}
+
+
+void Game::switchPlayer()
+// Switch current player to the other player.
+{
+	_currentPlayer = (_currentPlayer + 1) % 2;
+}
+
+Game::~Game()
+// Delete players and cards once game is over.
+{
+	delete _players[0];
+	delete _players[1];
+	
+	for (Card* card : _deck)
+		delete card;
+
+	for (Card* card : _discardPile)
+		delete card;
+}

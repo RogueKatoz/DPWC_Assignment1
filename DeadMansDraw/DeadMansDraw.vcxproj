@@ -128,6 +128,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DeadMansDraw.cpp" />
+    <ClCompile Include="src\card.cpp" />
+    <ClCompile Include="src\cards\AnchorCard.cpp" />
+    <ClCompile Include="src\cards\CannonCard.cpp" />
+    <ClCompile Include="src\cards\ChestCard.cpp" />
+    <ClCompile Include="src\cards\HookCard.cpp" />
+    <ClCompile Include="src\cards\KeyCard.cpp" />
+    <ClCompile Include="src\cards\KrakenCard.cpp" />
+    <ClCompile Include="src\cards\MapCard.cpp" />
+    <ClCompile Include="src\cards\MermaidCard.cpp" />
+    <ClCompile Include="src\cards\OracleCard.cpp" />
+    <ClCompile Include="src\cards\SwordCard.cpp" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Card.h" />
+    <ClInclude Include="include\cards\AnchorCard.h" />
+    <ClInclude Include="include\cards\CannonCard.h" />
+    <ClInclude Include="include\cards\ChestCard.h" />
+    <ClInclude Include="include\cards\HookCard.h" />
+    <ClInclude Include="include\cards\KeyCard.h" />
+    <ClInclude Include="include\cards\KrakenCard.h" />
+    <ClInclude Include="include\cards\MapCard.h" />
+    <ClInclude Include="include\cards\MermaidCard.h" />
+    <ClInclude Include="include\cards\OracleCard.h" />
+    <ClInclude Include="include\cards\SwordCard.h" />
+    <ClInclude Include="include\CardTypes.h" />
+    <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\game_title.h" />
+    <ClInclude Include="include\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

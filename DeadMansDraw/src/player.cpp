@@ -45,14 +45,17 @@ std::string Player::getName() const
 void Player::playCard(Card* card, Game& game)
 // Add card to play area, then play effect if not bust.
 {
+	std::cout << _name << " draws a " << card->str() << std::endl;
 	_playArea->push_back(card);
 	if (isBust() == 1)
 	{
 		discardPlayedCards(game);
-	} else card->play(game, *this);
+	} else 
+		card->play(game, *this);
 
 	// Check if bust again after card has been played.
-	if (isBust() == 1) discardPlayedCards(game);
+	if (isBust() == 1)
+		discardPlayedCards(game);
 }
 
 bool Player::isBust()
@@ -100,6 +103,7 @@ void Player::bankPlayedCards()
 
 void Player::discardPlayedCards(Game& game)
 {
+	std::cout << "BUST! " << _name << " loses all cards in play area." << std::endl;
 	while (_playArea->size() > 0)
 	{
 		game.discardCard(*(_playArea->back()));

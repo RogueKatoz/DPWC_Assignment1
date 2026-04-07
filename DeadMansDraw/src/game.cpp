@@ -18,6 +18,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <stdlib.h>
 
 #define MAX_TURNS 20
 
@@ -45,6 +46,7 @@ std::cout << "Starting Dead Man's Draw++!" << std::endl;
 void Game::initialisePlayers()
 // Create both players.
 {
+	srand(time(NULL));
 	_players[0] = new Player();
 	_players[1] = new Player();
 }

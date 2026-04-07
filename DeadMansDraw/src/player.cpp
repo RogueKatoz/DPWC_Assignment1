@@ -135,6 +135,17 @@ void Player::printCollection(const CardCollection cards)
 	}
 }
 
+bool Player::BankHasCards()
+// Simply check whether or not the bank is empty.
+{
+	if (_bank->size() == 0)
+	{
+		return false;
+	}
+	else return true;
+}
+
+
 Card* Player::stealBankCard()
 // List highest card of each type in bank, ask which to take, and return it, deleting it from the bank.
 {

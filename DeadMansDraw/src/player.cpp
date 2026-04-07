@@ -178,15 +178,15 @@ Card* Player::stealBankCard()
 {
 	// Check from highest value first.
 	CardCollection* cardsToSteal;
-	for (int i = 9, i > 0, i--)
+	for (int i = 9; i > 0; i--)
 	{
 		for (Card* cardA : *_bank)
 		{
 			// If card is found of this value, check steal collection to see if card of same type already exists.
-			if (card->value() == i)
+			if (cardA->value() == i)
 			{
 				int addCard = 1;
-				for (Card* cardB : cardsToSteal)
+				for (Card* cardB : *cardsToSteal)
 				{
 					if (cardA->type() == cardB->type())
 					{
@@ -222,7 +222,7 @@ Card* Player::stealBankCard()
 
 	// Remove card from bank and return it.
 	Card* cardToSteal = (*cardsToSteal)[cardIndex];
-	_bank->erase(std::remove(_bank->begin(), bank->end(), cardToSteal), _bank->end());
+	_bank->erase(std::remove(_bank->begin(), _bank->end(), cardToSteal), _bank->end());
 	return cardToSteal;
 }
 

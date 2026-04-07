@@ -119,6 +119,28 @@ void Game::startGame()
 		playTurn();
 		switchPlayer();
 	}
+	
+	std::cout << "--- Game Over ---" << std::endl;
+	currentPlayer()->printBank();
+	otherPlayer()->printBank();
+
+	int player1Score = currentPlayer()->calculateScore();
+	int player2Score = otherPlayer()->calculateScore();
+
+	if (player1Score > player2Score)
+	{
+		std::cout << currentPlayer()->getName() << " wins!" << std::endl;
+
+	}
+	else if (player2Score > player1Score)
+	{
+		std::cout << otherPlayer()->getName() << " wins!" << std::endl;
+	}
+	else
+	{
+		std::cout << "It's a tie!" << std::endl;
+	}
+	
 }
 
 bool Game::endGame() const

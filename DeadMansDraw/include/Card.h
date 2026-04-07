@@ -21,5 +21,5 @@ public:
 	int value() const;
 	virtual std::string str() const = 0;
 	virtual void play(Game& game, Player& player) = 0;
-	virtual void willAddToBank(Game& game, Player& player) = 0;
+	virtual void willAddToBank(Game& game, Player& player);
 };

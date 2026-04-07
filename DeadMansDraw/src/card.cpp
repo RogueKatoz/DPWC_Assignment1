@@ -21,3 +21,7 @@ int Card::value() const
 {
 	return _value;
 }
+
+void Card::willAddToBank(Game& game, Player& player)
+{
+}

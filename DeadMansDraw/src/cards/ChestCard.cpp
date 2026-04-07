@@ -17,7 +17,7 @@ void ChestCard::play(Game& game, Player& player)
 	std::cout << "\tNo immediate effect. If banked with a key, draw as many bonus cards from the Discard pile as you moved into your Bank." << std::endl;
 }
 
-static void willAddToBank(Game& game, Player& player)
+void willAddToBank(Game& game, Player& player)
 {
 	CardCollection* discardCards;
 	for (int i = 0; i < 3; i++)

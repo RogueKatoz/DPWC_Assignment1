@@ -27,7 +27,7 @@ public:
 	void printPlayArea();
 	void printBank();
 	void printCollection(const CardCollection cards);
-	bool BankHasCards();
+	bool bankHasCards();
 	Card* stealBankCard();
 	void addToPlayArea(Card* card);
 	void addToBank(Card* card);

@@ -21,7 +21,7 @@ void KrakenCard::play(Game& game, Player& player)
 		Card* drawnCard = game.drawCard();
 		if (drawnCard != nullptr && player.isBust() == 0)
 		{
-			player->playCard(drawnCard, game);
+			player.playCard(drawnCard, game);
 		}
 	}
 }

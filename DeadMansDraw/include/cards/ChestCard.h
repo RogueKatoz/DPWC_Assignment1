@@ -1,7 +1,7 @@
 #pragma once
 #include "Card.h"
 
-class CannonCard : public Card {
+class ChestCard : public Card {
 public:
 	ChestCard(int value);
 

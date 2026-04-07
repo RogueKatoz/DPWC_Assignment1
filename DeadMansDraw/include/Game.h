@@ -1,6 +1,8 @@
 #pragma once
 
-class Game;
+#include "CardTypes.h"
+
+class Player;
 
 class Game {
 private:

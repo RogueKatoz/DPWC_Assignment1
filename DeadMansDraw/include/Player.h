@@ -1,7 +1,9 @@
 #pragma once
-#include <iostream>
 
-class Player;
+#include "CardTypes.h"
+#include <string>
+
+class Game;
 
 class Player {
 private:

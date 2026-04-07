@@ -1,16 +1,12 @@
 #pragma once
 
-#include "Game.h"
-#include "Player.h"
+#include <CardTypes.h>
 
+#include <string>
 #include <vector>
 
-
-class Card;
-typedef std::vector<Card*> CardCollection;
-
-enum CardType {Cannon, Chest, Key, Anchor, Sword, Hook, Oracle, Map, Mermaid, Kraken};
-constexpr CardType CARD_TYPES[] = {Cannon, Chest, Key, Anchor, Sword, Hook, Oracle, Map, Mermaid, Kraken};
+class Game;
+class Player;
 
 class Card {
 protected:

@@ -1,6 +1,6 @@
-#include "MapCard.h"
-#include <string>
-#include <iostream>
+#include "cards/MapCard.h"
+#include "Game.h"
+#include "Player.h"
 
 MapCard::MapCard(int value) : Card(Map, value) {}
 

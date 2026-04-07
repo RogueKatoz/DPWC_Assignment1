@@ -1,4 +1,7 @@
-#include "CannonCard.h"
+#include "cards/CannonCard.h"
+#include "Game.h"
+#include "Player.h"
+
 #include <string>
 #include <iostream>
 

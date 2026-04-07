@@ -1,4 +1,7 @@
-#include "AnchorCard.h"
+#include "cards/AnchorCard.h"
+#include "Game.h"
+#include "Player.h"
+
 #include <string>
 
 AnchorCard::AnchorCard(int value) : Card(Anchor, value) {}

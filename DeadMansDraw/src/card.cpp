@@ -1,4 +1,6 @@
 #include "Card.h"
+#include "Game.h"
+#include "Player.h"
 
 Card::Card(CardType type, int value)
 {

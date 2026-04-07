@@ -1,4 +1,7 @@
-#include "KrakenCard.h"
+#include "cards/KrakenCard.h"
+#include "Game.h"
+#include "Player.h"
+
 #include <string>
 #include <iostream>
 

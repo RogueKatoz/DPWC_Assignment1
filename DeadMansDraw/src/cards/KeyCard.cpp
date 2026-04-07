@@ -1,4 +1,7 @@
-#include "KeyCard.h"
+#include "cards/KeyCard.h"
+#include "Game.h"
+#include "Player.h"
+
 #include <string>
 
 KeyCard::KeyCard(int value) : Card(Key, value) {}

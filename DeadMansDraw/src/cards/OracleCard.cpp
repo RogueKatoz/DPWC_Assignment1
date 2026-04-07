@@ -1,4 +1,7 @@
-#include "OracleCard.h"
+#include "cards/OracleCard.h"
+#include "Game.h"
+#include "Player.h"
+
 #include <string>
 #include <iostream>
 

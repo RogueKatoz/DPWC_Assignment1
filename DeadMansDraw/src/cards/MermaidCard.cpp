@@ -1,4 +1,7 @@
-#include "MermaidCard.h"
+#include "cards/MermaidCard.h"
+#include "Game.h"
+#include "Player.h"
+
 #include <string>
 #include <iostream>
 

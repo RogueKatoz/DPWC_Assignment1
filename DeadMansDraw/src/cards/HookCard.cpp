@@ -1,4 +1,7 @@
-#include "HookCard.h"
+#include "cards/HookCard.h"
+#include "Game.h"
+#include "Player.h"
+
 #include <string>
 #include <iostream>
 

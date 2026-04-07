@@ -1,5 +1,18 @@
 #include "Game.h"
+#include "Player.h"
+#include "Card.h"
 #include "game_title.h"
+
+#include "cards/AnchorCard.h"
+#include "cards/CannonCard.h"
+#include "cards/ChestCard.h"
+#include "cards/KeyCard.h"
+#include "cards/SwordCard.h"
+#include "cards/HookCard.h"
+#include "cards/OracleCard.h"
+#include "cards/MapCard.h"
+#include "cards/MermaidCard.h"
+#include "cards/KrakenCard.h"
 
 #include <bits/stdc++.h>
 #include <iostream>

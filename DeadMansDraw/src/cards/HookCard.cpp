@@ -1,5 +1,6 @@
 #include "HookCard.h"
 #include <string>
+#include <iostream>
 
 HookCard::HookCard(int value)
 {

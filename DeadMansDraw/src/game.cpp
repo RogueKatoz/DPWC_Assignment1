@@ -27,8 +27,8 @@ Game::Game()
 	_players[1] = nullptr;
 	_deck = new CardCollection;
 	_discardPile = new CardCollection;
-	_currentRound = 1;
-	_currentTurn = 1;
+	_currentRound = 0;
+	_currentTurn = 0;
 	_currentPlayer = 0;
 }
 
@@ -111,6 +111,9 @@ void Game::startGame()
 	initialiseGame();
 	while (endGame() == 0)
 	{
+		_currentTurn += 1;
+		if (_currentPlayer == 0)
+			_currentRound += 1;
 		std::cout << "--- Round " << _currentRound << ", Turn " << _currentTurn << " ---" << std::endl;
 
 		playTurn();
@@ -131,22 +134,23 @@ bool Game::endGame() const
 void Game::playTurn()
 // Go through single turn for current player.
 {
-	std::cout << _players[_currentPlayer]->getName() << "'s turn." << std::endl;
-	_players[_currentPlayer]->printBank();
+	std::cout << currentPlayer()->getName() << "'s turn." << std::endl;
+	currentPlayer()->printBank();
 	while (1)
 	{
 		// Draw and play card if deck is not empty.
 		Card* cardToPlay = drawCardDeck();
 		if (cardToPlay == NULL) break;
-		_players[_currentPlayer]->playCard(cardToPlay, *this);
+		currentPlayer()->playCard(cardToPlay, *this);
 
 		// Check if player is bust and break, or ask for another card.
-		if (_players[_currentPlayer]->isBust() == 1) break;
+		if (currentPlayer()->isBust() == 1) break;
 
-		_players[_currentPlayer]->printPlayArea();
+		currentPlayer()->printPlayArea();
 		if (promptDrawCard() == 0)
 		{
-			_players[_currentPlayer]->bankPlayedCards();
+			currentPlayer()->bankPlayedCards();
+			printBank();
 			break;
 		}
 	}
@@ -214,10 +218,6 @@ Player* Game::otherPlayer() const
 void Game::switchPlayer()
 {
 	_currentPlayer = (_currentPlayer + 1) % 2;
-
-	_currentTurn += 1;
-	if (_currentPlayer == 0)
-		_currentRound += 1;
 }
 
 Game::~Game()

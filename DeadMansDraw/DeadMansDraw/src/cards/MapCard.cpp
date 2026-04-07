@@ -13,6 +13,7 @@ std::string MapCard::str() const
 }
 
 void MapCard::play(Game& game, Player& player)
+// Draw 3 cards from the discard pile, pick one to add to play area, and discard the rest.
 {
 	CardCollection discardCards;
 	for (int i = 0; i < 3; i++)
@@ -42,7 +43,9 @@ void MapCard::play(Game& game, Player& player)
 	{
 		std::cout << "\tWhich card do you pick? ";
 		std::cin >> cardIndex;
-		std::cout << std::endl;
+		// Fix to clear cin and purge input buffer if input is invalid.
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 
 	// Take chosen card, discard rest, and play the card.

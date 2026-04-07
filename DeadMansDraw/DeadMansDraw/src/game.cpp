@@ -18,6 +18,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <stdlib.h>
 
 #define MAX_TURNS 20
 
@@ -45,6 +46,7 @@ std::cout << "Starting Dead Man's Draw++!" << std::endl;
 void Game::initialisePlayers()
 // Create both players.
 {
+	srand(time(NULL));
 	_players[0] = new Player();
 	_players[1] = new Player();
 }
@@ -109,6 +111,7 @@ void Game::startGame()
 	initialiseGame();
 	while (endGame() == 0)
 	{
+		// Increment turn and round, then print.
 		_currentTurn += 1;
 		if (_currentPlayer == 0)
 			_currentRound += 1;
@@ -117,6 +120,29 @@ void Game::startGame()
 		playTurn();
 		switchPlayer();
 	}
+	
+	// Once game is over, print final scores and winner.
+	std::cout << "--- Game Over ---" << std::endl;
+	currentPlayer()->printBank();
+	otherPlayer()->printBank();
+
+	int player1Score = currentPlayer()->calculateScore();
+	int player2Score = otherPlayer()->calculateScore();
+
+	if (player1Score > player2Score)
+	{
+		std::cout << currentPlayer()->getName() << " wins!" << std::endl;
+
+	}
+	else if (player2Score > player1Score)
+	{
+		std::cout << otherPlayer()->getName() << " wins!" << std::endl;
+	}
+	else
+	{
+		std::cout << "It's a tie!" << std::endl;
+	}
+	
 }
 
 bool Game::endGame() const
@@ -141,9 +167,14 @@ void Game::playTurn()
 		if (cardToPlay == NULL) break;
 		currentPlayer()->playCard(cardToPlay, *this);
 
-		// Check if player is bust and break, or ask for another card.
-		if (currentPlayer()->isBust() == 1) break;
+		// If player has busted, discard play area and end turn.
+		if (currentPlayer()->isBust() == true)
+		{
+			currentPlayer()->discardPlayedCards(*this);
+			break;
+		}
 
+		// Ask if player wants to draw again, otherwise bank cards.
 		currentPlayer()->printPlayArea();
 		if (promptDrawCard() == 0)
 		{
@@ -155,6 +186,7 @@ void Game::playTurn()
 }
 
 bool Game::promptDrawCard() const
+// Ask user if they want to draw another card.
 {
 	char input;
 	std::cout << "Draw again? (y/n): ";
@@ -167,6 +199,7 @@ bool Game::promptDrawCard() const
 }
 
 Card* Game::drawCardDeck()
+// Draw card from deck, removing it from the deck collection.
 {
 	if (_deck.size() == 0)
 	{
@@ -178,6 +211,7 @@ Card* Game::drawCardDeck()
 }
 
 Card* Game::drawCardDiscard()
+// Draw card from discard pile, removing it from the discard collection.
 {
 	if (_discardPile.size() == 0)
 	{
@@ -189,6 +223,7 @@ Card* Game::drawCardDiscard()
 }	
 
 Card* Game::peekDeck() const
+// Look at top card of deck without removing it.
 {
 	if (_deck.empty())
 	{
@@ -198,28 +233,32 @@ Card* Game::peekDeck() const
 }
 
 void Game::discardCard(Card& card)
+// Add card to discard pile.
 {
 	_discardPile.push_back(&card);
 }
 
 Player* Game::currentPlayer() const
+// Return pointer to current player.
 {
 	return _players[_currentPlayer];
 }
 
 Player* Game::otherPlayer() const
+// Return pointer to other player.
 {
 	return _players[1 - _currentPlayer];
 }
 
 
 void Game::switchPlayer()
+// Switch current player to the other player.
 {
 	_currentPlayer = (_currentPlayer + 1) % 2;
 }
 
 Game::~Game()
-// Cleanup.
+// Delete players and cards once game is over.
 {
 	delete _players[0];
 	delete _players[1];

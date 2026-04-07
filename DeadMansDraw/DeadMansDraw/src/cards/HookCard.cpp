@@ -13,6 +13,7 @@ std::string HookCard::str() const
 }
 
 void HookCard::play(Game& game, Player& player)
+// If player's bank has cards, choose a suit and play the highest value.
 {
 	if (player.bankHasCards() == 0)
 	{

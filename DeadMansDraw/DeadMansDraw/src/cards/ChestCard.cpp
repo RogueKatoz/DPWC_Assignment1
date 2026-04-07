@@ -18,6 +18,7 @@ void ChestCard::play(Game& game, Player& player)
 }
 
 void ChestCard::willAddToBank(Game& game, Player& player)
+// If player has a key in play area, draw cards from discard pile equal to number of cards in play area and add to bank.
 {
 	int cardsToDraw = player.playAreaSize();
 	CardCollection discardCards;

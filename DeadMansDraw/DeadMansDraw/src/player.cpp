@@ -14,6 +14,7 @@ Player::Player()
 }
 
 int Player::calculateScore() const
+// Go through each type of card in bank and add value of highest card of that type to score.
 {
 	int score = 0;
 	if (_bank.size() != 0)
@@ -44,15 +45,11 @@ void Player::playCard(Card* card, Game& game)
 {
 	std::cout << _name << " draws a " << card->str() << std::endl;
 	_playArea.push_back(card);
-	if (isBust() == 1)
-	{
-		discardPlayedCards(game);
-	} else 
-		card->play(game, *this);
 
-	// Check if bust again after card has been played.
-	if (isBust() == 1)
-		discardPlayedCards(game);
+	// if player busts after drawing card, don't play ability.
+	if (isBust() == 1) return;
+
+	card->play(game, *this);
 }
 
 bool Player::isBust() const
@@ -72,6 +69,7 @@ bool Player::isBust() const
 }
 
 bool Player::playAreaContains(CardType type) const
+// Check if certain type exists in play area. Used for chest/key combo.
 {
 	for (Card* card : _playArea)
 	{
@@ -104,6 +102,7 @@ void Player::bankPlayedCards(Game& game)
 }
 
 void Player::discardPlayedCards(Game& game)
+// Alert player of bust, add all cards in play area to discard pile, then clear play area.
 {
 	std::cout << "BUST! " << _name << " loses all cards in play area." << std::endl;
 	while (_playArea.size() > 0)
@@ -114,6 +113,7 @@ void Player::discardPlayedCards(Game& game)
 }
 
 void Player::printPlayArea() const
+// Print all cards in play area, grouped by type and sorted by value within each type.
 {
 	std::cout << _name << "'s Play Area:" << std::endl;
 	printCollection(_playArea);
@@ -121,6 +121,7 @@ void Player::printPlayArea() const
 }
 
 void Player::printBank() const
+// Print all cards in bank, grouped by type and sorted by value within each type. Also print score.
 {
 	std::cout << _name << "'s Bank:" << std::endl;
 	printCollection(_bank);
@@ -149,7 +150,7 @@ void Player::printCollection(const CardCollection& cards) const
 		std::cout << "\t";
 		while (cardsToPrint.size() > 0)
 		{
-			Card* highestCard; int highestValue = 0;
+			Card* highestCard = nullptr; int highestValue = 0;
 			for (Card* card : cardsToPrint)
 			{
 				if (card->value() > highestValue)
@@ -158,8 +159,11 @@ void Player::printCollection(const CardCollection& cards) const
 					highestValue = card->value();
 				}
 			}
-			std::cout << highestCard->str() << " ";
-			cardsToPrint.erase(std::remove(cardsToPrint.begin(), cardsToPrint.end(), highestCard), cardsToPrint.end());
+			if (highestCard != nullptr)
+			{
+				std::cout << highestCard->str() << " ";
+				cardsToPrint.erase(std::remove(cardsToPrint.begin(), cardsToPrint.end(), highestCard), cardsToPrint.end());
+			}
 		}
 		std::cout << std::endl;
 	}
@@ -206,7 +210,6 @@ Card* Player::stealBankCard()
 	}
 
 	// Print cards to steal.
-	
 	for (int i = 0; i < cardsToSteal.size(); i++)
 	{
 		std::cout << "\t(" << i+1 << ") " << (cardsToSteal)[i]->str() << std::endl;
@@ -220,7 +223,9 @@ Card* Player::stealBankCard()
 	{
 		std::cout << "\tWhich card do you pick? ";
 		std::cin >> cardIndex;
-		std::cout << std::endl;
+		// Fix to clear cin and purge input buffer if input is invalid.
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
 	}
 
 	// Remove card from bank and return it.

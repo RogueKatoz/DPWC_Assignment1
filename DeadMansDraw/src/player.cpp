@@ -42,7 +42,7 @@ std::string Player::getName() const
 	return _name;
 }
 
-void Player::playCard(Card& card, Game& game)
+void Player::playCard(Card* card, Game& game)
 // Add card to play area, then play effect if not bust.
 {
 	std::cout << _name << " draws a " << card.str() << std::endl;
@@ -51,7 +51,7 @@ void Player::playCard(Card& card, Game& game)
 	{
 		discardPlayedCards(game);
 	} else 
-		card.play(game, *this);
+		card->play(game, *this);
 
 	// Check if bust again after card has been played.
 	if (isBust() == 1)
@@ -125,7 +125,7 @@ void Player::printBank()
 	std::cout << "| Score: " << calculateScore() << std::endl;
 }
 
-void Player::printCollection(const CardCollection cards)
+void Player::printCollection(const CardCollection& cards) const
 // Go through each type of card present in play area/bank and print in descending order.
 {
 	if (cards.size() == 0) return;
@@ -226,13 +226,13 @@ Card* Player::stealBankCard()
 	return cardToSteal;
 }
 
-void Player::addToPlayArea(Card& card)
+void Player::addToPlayArea(Card* card)
 // Manually add card to play area without playing it.
 {
 	_playArea->push_back(card);
 }
 
-void Player::addToBank(Card& card)
+void Player::addToBank(Card* card)
 // Manually add single card to bank.
 {
 	_bank->push_back(card);

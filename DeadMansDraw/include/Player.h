@@ -26,7 +26,7 @@ public:
 	void discardPlayedCards(Game& game);
 	void printPlayArea();
 	void printBank();
-	void printCollection(const CardCollection cards);
+	void printCollection(const CardCollection& cards) const;
 	bool bankHasCards();
 	Card* stealBankCard();
 	void addToPlayArea(Card* card);

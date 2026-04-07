@@ -192,6 +192,18 @@ Card* Player::stealBankCard()
 	return cardToSteal;
 }
 
+void Player::addToPlayArea(Card* card)
+// Manually add card to play area without playing it.
+{
+	_playArea->push_back(card);
+}
+
+void Player::addToBank(Card* card)
+// Manually add single card to bank.
+{
+	_bank->push_back(card);
+}
+
 Player::~Player()
 {
 }

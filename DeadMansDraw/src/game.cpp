@@ -188,7 +188,9 @@ Game::~Game()
 	
 	for (Card* card : *_deck)
 		delete card;
+	delete _deck;
 
 	for (Card* card : *_discardPile)
 		delete card;
+	delete _discardPile;
 }

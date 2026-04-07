@@ -239,5 +239,13 @@ void Player::addToBank(Card* card)
 }
 
 Player::~Player()
+// Delete cards in play area and bank collections.
 {
+	for (Card* card : *_playArea)
+		delete card;
+	delete _playArea;
+
+	for (Card* card : *_bank)
+		delete card;
+	delete _bank;
 }
